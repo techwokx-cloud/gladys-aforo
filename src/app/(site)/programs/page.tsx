@@ -3,6 +3,7 @@ import { HandHeart, HeartPulse, Soup, ShieldPlus, Baby, MapPin } from "lucide-re
 import Breadcrumb from "@/components/Breadcrumb";
 import SectionHeading from "@/components/SectionHeading";
 import DonateBanner from "@/components/DonateBanner";
+import Reveal from "@/components/Reveal";
 import { programs } from "@/lib/site";
 
 export const metadata = { title: "Our Programs | Gladys Aforo Foundation" };
@@ -51,11 +52,11 @@ export default function ProgramsPage() {
       </section>
 
       <section className="mx-auto max-w-7xl space-y-6 px-4 pb-16 sm:px-6 lg:px-8">
-        {programs.map((p) => {
+        {programs.map((p, i) => {
           const Icon = programIcons[p.icon];
           return (
+            <Reveal key={p.slug} delay={i * 100}>
             <div
-              key={p.slug}
               className="grid grid-cols-1 overflow-hidden rounded-xl border border-forest-900/10 bg-white shadow-sm md:grid-cols-[minmax(0,26rem)_1fr]"
             >
               <div className="relative h-56 md:h-full">
@@ -79,6 +80,7 @@ export default function ProgramsPage() {
                 </div>
               </div>
             </div>
+            </Reveal>
           );
         })}
       </section>

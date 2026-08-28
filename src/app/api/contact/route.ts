@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import { saveMessage } from "@/lib/store";
+import { sendMail } from "@/lib/mailer";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -18,6 +19,22 @@ export async function POST(req: NextRequest) {
     message,
     createdAt: new Date().toISOString(),
   });
+
+  try {
+    await sendMail({
+      subject: `New contact message: ${subject || "Website inquiry"}`,
+      replyTo: email,
+      html: `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        ${subject ? `<p><strong>Subject:</strong> ${subject}</p>` : ""}
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, "<br/>")}</p>
+      `,
+    });
+  } catch (err) {
+    console.error("Failed to send contact email", err);
+  }
 
   return NextResponse.json({ ok: true, message: saved });
 }

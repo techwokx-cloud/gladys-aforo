@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { HandCoins, Users, MessageSquare, TrendingUp, ArrowRight } from "lucide-react";
-import { listDonations, listMessages } from "@/lib/store";
+import { HandCoins, Users, MessageSquare, TrendingUp, ArrowRight, ClipboardList } from "lucide-react";
+import { listDonations, listMessages, listSupportRequests } from "@/lib/store";
 import StatusPill from "@/components/dashboard/StatusPill";
 
 export const metadata = { title: "Dashboard | Gladys Aforo Foundation" };
@@ -9,10 +9,12 @@ export const dynamic = "force-dynamic";
 export default function DashboardOverview() {
   const donations = listDonations();
   const messages = listMessages();
+  const requests = listSupportRequests();
 
   const successful = donations.filter((d) => d.status === "success");
   const totalRaised = successful.reduce((sum, d) => sum + d.amount, 0);
   const successRate = donations.length ? Math.round((successful.length / donations.length) * 100) : 0;
+  const newRequests = requests.filter((r) => r.status === "new").length;
 
   const cards = [
     {
@@ -23,6 +25,7 @@ export default function DashboardOverview() {
     { label: "Total Donors", value: donations.length, icon: Users },
     { label: "Success Rate", value: `${successRate}%`, icon: TrendingUp },
     { label: "New Messages", value: messages.length, icon: MessageSquare },
+    { label: "Open Support Requests", value: newRequests, icon: ClipboardList },
   ];
 
   return (
@@ -32,7 +35,7 @@ export default function DashboardOverview() {
         A snapshot of donations and inquiries coming through the website.
       </p>
 
-      <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-5">
         {cards.map((c) => {
           const Icon = c.icon;
           return (

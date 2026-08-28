@@ -14,6 +14,8 @@ import {
 import Breadcrumb from "@/components/Breadcrumb";
 import SectionHeading from "@/components/SectionHeading";
 import DonateBanner from "@/components/DonateBanner";
+import CountUp from "@/components/CountUp";
+import Reveal from "@/components/Reveal";
 import { stats, impactMetrics, trustBadges } from "@/lib/site";
 
 export const metadata = { title: "Our Impact | Gladys Aforo Foundation" };
@@ -63,7 +65,9 @@ export default function ImpactPage() {
               return (
                 <div key={s.label} className="flex flex-col items-center gap-2 text-center text-white">
                   <Icon className="h-7 w-7 text-gold-400" />
-                  <p className="font-display text-3xl font-semibold">{s.value}</p>
+                  <p className="font-display text-3xl font-semibold">
+                    <CountUp value={s.value} />
+                  </p>
                   <p className="text-xs text-cream-300">{s.label}</p>
                 </div>
               );
@@ -75,19 +79,18 @@ export default function ImpactPage() {
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <SectionHeading eyebrow="Your Gift Makes an Impact" title="What Your Giving" accent="Provides" center />
         <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {impactMetrics.map((m) => {
+          {impactMetrics.map((m, i) => {
             const Icon = metricIcons[m.icon];
             return (
-              <div
-                key={m.label}
-                className="rounded-lg border border-gold-500/30 bg-cream-200 p-5 text-center"
-              >
-                <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-forest-900">
-                  <Icon className="h-5 w-5 text-gold-400" />
+              <Reveal key={m.label} delay={i * 80}>
+                <div className="rounded-lg border border-gold-500/30 bg-cream-200 p-5 text-center">
+                  <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-forest-900">
+                    <Icon className="h-5 w-5 text-gold-400" />
+                  </div>
+                  <p className="font-display text-lg font-semibold text-forest-950">{m.label}</p>
+                  <p className="mt-1 text-sm text-forest-800/80">{m.desc}</p>
                 </div>
-                <p className="font-display text-lg font-semibold text-forest-950">{m.label}</p>
-                <p className="mt-1 text-sm text-forest-800/80">{m.desc}</p>
-              </div>
+              </Reveal>
             );
           })}
         </div>

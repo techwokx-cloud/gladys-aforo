@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import DonateBanner from "@/components/DonateBanner";
+import CountUp from "@/components/CountUp";
+import Reveal from "@/components/Reveal";
 import { site, stats } from "@/lib/site";
 
 const statIcons: Record<string, React.ElementType> = {
@@ -108,28 +110,27 @@ export default function Home() {
       {/* Feature cards */}
       <section className="relative z-10 -mt-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {featureCards.map((card) => {
+          {featureCards.map((card, i) => {
             const Icon = card.icon;
             return (
-              <div
-                key={card.title}
-                className="overflow-hidden rounded-xl bg-white shadow-xl shadow-black/10"
-              >
-                <div className="relative h-52 w-full">
-                  <Image src={card.image} alt={card.desc} fill className="object-cover" />
-                </div>
-                <div className="p-6 text-center">
-                  <div className="mx-auto -mt-12 mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-forest-900 ring-4 ring-white">
-                    <Icon className="h-5 w-5 text-gold-400" />
+              <Reveal key={card.title} delay={i * 120}>
+                <div className="overflow-hidden rounded-xl bg-white shadow-xl shadow-black/10">
+                  <div className="relative h-52 w-full">
+                    <Image src={card.image} alt={card.desc} fill className="object-cover" />
                   </div>
-                  <h3 className="font-display text-xl font-semibold text-forest-950">
-                    {card.title} {card.accent && <span className="italic text-gold-500">{card.accent}</span>}
-                  </h3>
-                  <p className="mt-1 text-sm font-medium text-gold-600">{card.tag}</p>
-                  <div className="mx-auto my-3 h-px w-10 bg-gold-500/40" />
-                  <p className="text-sm text-forest-800/70">{card.desc}</p>
+                  <div className="p-6 text-center">
+                    <div className="mx-auto -mt-12 mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-forest-900 ring-4 ring-white">
+                      <Icon className="h-5 w-5 text-gold-400" />
+                    </div>
+                    <h3 className="font-display text-xl font-semibold text-forest-950">
+                      {card.title} {card.accent && <span className="italic text-gold-500">{card.accent}</span>}
+                    </h3>
+                    <p className="mt-1 text-sm font-medium text-gold-600">{card.tag}</p>
+                    <div className="mx-auto my-3 h-px w-10 bg-gold-500/40" />
+                    <p className="text-sm text-forest-800/70">{card.desc}</p>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>
@@ -143,7 +144,9 @@ export default function Home() {
             return (
               <div key={s.label} className="flex flex-col items-center gap-2">
                 <Icon className="h-7 w-7 text-gold-400" />
-                <p className="font-display text-2xl font-semibold">{s.value}</p>
+                <p className="font-display text-2xl font-semibold">
+                  <CountUp value={s.value} />
+                </p>
                 <p className="text-xs text-cream-300">{s.label}</p>
               </div>
             );
@@ -154,6 +157,7 @@ export default function Home() {
       {/* Story + Mission/Vision */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+          <Reveal>
           <div>
             <SectionHeading eyebrow="Our Story" title="In Honor of a" accent="Woman of Grace" />
             <p className="mt-5 text-forest-800/80">
@@ -184,7 +188,9 @@ export default function Home() {
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
+          </Reveal>
 
+          <Reveal delay={150}>
           <div>
             <SectionHeading eyebrow="Purpose & Direction" title="Our Mission" accent="& Vision" />
             <div className="mt-6 space-y-5">
@@ -212,6 +218,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+          </Reveal>
         </div>
       </section>
 

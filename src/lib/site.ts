@@ -30,8 +30,48 @@ export const navLinks = [
   { href: "/gallery", label: "Gallery" },
   { href: "/impact", label: "Impact" },
   { href: "/leadership", label: "Leadership" },
+  { href: "/support", label: "Request Support" },
   { href: "/contact", label: "Contact" },
 ];
+
+export const supportRequestOptions = {
+  roles: ["Nurse", "Caregiver", "Social Worker", "Community Health Worker", "Other"],
+  districts: [
+    "Accra Metropolitan",
+    "Ablekuma",
+    "Ayawaso",
+    "Ga East",
+    "Ga West",
+    "Ga South",
+    "Adenta",
+    "Ledzokuku",
+    "Krowor",
+    "Madina",
+    "Other",
+  ],
+  supportTypes: [
+    "Medical care & treatment",
+    "Maternal & child health needs",
+    "Nutrition & food support",
+    "Emergency & essential needs",
+    "Other critical family needs",
+  ],
+  urgencyLevels: ["Low", "Medium", "High", "Critical / Emergency"],
+};
+
+export const supportRequestInfo = {
+  whoCanSubmit:
+    "Nurses, caregivers, social workers, or community health workers who have identified a family or individual in genuine need can submit a request for support.",
+  whatWeSupport: [
+    { title: "Medical care & treatment", icon: "heart-pulse" },
+    { title: "Maternal & child health needs", icon: "baby" },
+    { title: "Nutrition & food support", icon: "soup" },
+    { title: "Emergency & essential needs", icon: "shield-plus" },
+    { title: "Other critical family needs", icon: "hand-heart" },
+  ],
+  commitment:
+    "All requests are reviewed with care and confidentiality. We are committed to serving with compassion, dignity, and transparency.",
+};
 
 export const stats = [
   { label: "Mothers & Babies Supported", value: "100+", icon: "heart-handshake" },

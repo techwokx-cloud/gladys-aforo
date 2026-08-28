@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { LayoutDashboard, HeartHandshake, MessageSquare, ExternalLink } from "lucide-react";
+import { LayoutDashboard, HeartHandshake, MessageSquare, ExternalLink, ClipboardList, Share2 } from "lucide-react";
 import LogoutButton from "@/components/dashboard/LogoutButton";
 import { site } from "@/lib/site";
 
@@ -38,6 +38,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <MessageSquare className="h-4 w-4" /> Messages
               </Link>
               <Link
+                href="/dashboard/requests"
+                className="flex items-center gap-2.5 rounded-md px-3 py-2.5 text-cream-200 hover:bg-white/5"
+              >
+                <ClipboardList className="h-4 w-4" /> Support Requests
+              </Link>
+              <Link
+                href="/dashboard/social"
+                className="flex items-center gap-2.5 rounded-md px-3 py-2.5 text-cream-200 hover:bg-white/5"
+              >
+                <Share2 className="h-4 w-4" /> Social & Outreach
+              </Link>
+              <Link
                 href="/"
                 target="_blank"
                 className="flex items-center gap-2.5 rounded-md px-3 py-2.5 text-cream-300 hover:bg-white/5"
@@ -72,6 +84,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               className="rounded-full border border-forest-900/15 bg-white px-3 py-1.5"
             >
               Messages
+            </Link>
+            <Link
+              href="/dashboard/requests"
+              className="rounded-full border border-forest-900/15 bg-white px-3 py-1.5"
+            >
+              Requests
+            </Link>
+            <Link
+              href="/dashboard/social"
+              className="rounded-full border border-forest-900/15 bg-white px-3 py-1.5"
+            >
+              Social
             </Link>
           </nav>
           {children}

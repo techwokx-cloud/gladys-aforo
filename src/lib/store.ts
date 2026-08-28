@@ -48,6 +48,36 @@ export type ContactMessage = {
   createdAt: string;
 };
 
+export type SupportRequest = {
+  id: string;
+  fullName: string;
+  role: string;
+  phone: string;
+  email: string;
+  facility: string;
+  district: string;
+  familyHeadName: string;
+  dependents: string;
+  situation: string;
+  supportType: string;
+  estimatedAmount: string;
+  urgency: string;
+  additionalInfo?: string;
+  attachmentNames: string[];
+  status: "new" | "reviewing" | "approved" | "declined";
+  createdAt: string;
+};
+
+export type SocialPost = {
+  id: string;
+  title: string;
+  content: string;
+  platform: "facebook" | "instagram" | "whatsapp" | "general";
+  status: "draft" | "scheduled" | "posted";
+  scheduledFor?: string;
+  createdAt: string;
+};
+
 export function listDonations(): Donation[] {
   return readJson<Donation[]>("donations.json", []);
 }
@@ -81,4 +111,42 @@ export function saveMessage(msg: ContactMessage) {
   messages.unshift(msg);
   writeJson("messages.json", messages);
   return msg;
+}
+
+export function listSupportRequests(): SupportRequest[] {
+  return readJson<SupportRequest[]>("support-requests.json", []);
+}
+
+export function saveSupportRequest(req: SupportRequest) {
+  const requests = listSupportRequests();
+  requests.unshift(req);
+  writeJson("support-requests.json", requests);
+  return req;
+}
+
+export function updateSupportRequestStatus(id: string, status: SupportRequest["status"]) {
+  const requests = listSupportRequests();
+  const idx = requests.findIndex((r) => r.id === id);
+  if (idx >= 0) {
+    requests[idx].status = status;
+    writeJson("support-requests.json", requests);
+    return requests[idx];
+  }
+  return null;
+}
+
+export function listSocialPosts(): SocialPost[] {
+  return readJson<SocialPost[]>("social-posts.json", []);
+}
+
+export function saveSocialPost(post: SocialPost) {
+  const posts = listSocialPosts();
+  posts.unshift(post);
+  writeJson("social-posts.json", posts);
+  return post;
+}
+
+export function deleteSocialPost(id: string) {
+  const posts = listSocialPosts().filter((p) => p.id !== id);
+  writeJson("social-posts.json", posts);
 }

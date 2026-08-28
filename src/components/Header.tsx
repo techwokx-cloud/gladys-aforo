@@ -34,7 +34,7 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-7 text-sm">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-6 text-sm">
           {navLinks.map((link) => (
             <Link
               key={link.href}
