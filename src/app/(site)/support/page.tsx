@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { HandHeart, HeartPulse, Baby, Soup, ShieldPlus } from "lucide-react";
 import Breadcrumb from "@/components/Breadcrumb";
-import SectionHeading from "@/components/SectionHeading";
 import DonateBanner from "@/components/DonateBanner";
 import SupportRequestForm from "@/components/SupportRequestForm";
 import { supportRequestInfo, site } from "@/lib/site";
@@ -16,31 +15,52 @@ const supportIcons: Record<string, React.ElementType> = {
   "hand-heart": HandHeart,
 };
 
+function SidebarHeading({ title }: { title: string }) {
+  return (
+    <div>
+      <h3 className="font-display text-xl font-semibold text-forest-950">{title}</h3>
+      <div className="mt-2 flex items-center gap-2 text-gold-500">
+        <span className="h-px w-6 bg-gold-500/50" />
+        <span className="text-xs">♥</span>
+        <span className="h-px w-6 bg-gold-500/50" />
+      </div>
+    </div>
+  );
+}
+
 export default function SupportPage() {
   return (
     <>
       <Breadcrumb current="Request Support" />
 
       <section className="relative overflow-hidden bg-forest-900">
-        <div className="absolute inset-0 opacity-30">
-          <Image src="/images/gallery/g6.jpg" alt="" fill className="object-cover" />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-forest-900 via-forest-900/95 to-forest-900/60" />
-        <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <HandHeart className="mb-4 h-8 w-8 text-gold-400" />
-            <h1 className="font-display text-3xl font-semibold text-white sm:text-4xl">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
+          <div className="flex flex-col justify-center px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
+              <HandHeart className="h-5 w-5 text-gold-400" />
+            </div>
+            <h1 className="font-display text-3xl font-semibold leading-tight text-white sm:text-4xl">
               Are you a nurse or caregiver who has identified a family in need?
             </h1>
-            <p className="mt-4 text-cream-300">
+            <p className="mt-4 max-w-md text-cream-300">
               Submit a request for funds or support and our team will review it promptly.
             </p>
             <a
               href="#request-form"
-              className="mt-6 inline-flex items-center gap-2 rounded-md bg-gold-500 px-6 py-3 font-semibold text-forest-950 hover:bg-gold-400"
+              className="mt-6 inline-flex w-fit items-center gap-2 rounded-md bg-gold-500 px-6 py-3 font-semibold text-forest-950 transition-colors hover:bg-gold-400"
             >
               Submit a Request
             </a>
+          </div>
+          <div className="relative h-64 lg:h-auto">
+            <Image
+              src="/images/gallery/g6.jpg"
+              alt="Foundation team caring for a mother and child"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-forest-900/35" />
+            <div className="absolute inset-0 bg-gradient-to-r from-forest-900 to-transparent lg:w-24" />
           </div>
         </div>
       </section>
@@ -48,12 +68,12 @@ export default function SupportPage() {
       <section className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[20rem_1fr] lg:px-8">
         <aside className="space-y-8">
           <div>
-            <SectionHeading title="Who Can" accent="Submit a Request?" />
+            <SidebarHeading title="Who Can Submit a Request?" />
             <p className="mt-3 text-sm text-forest-800/80">{supportRequestInfo.whoCanSubmit}</p>
           </div>
 
           <div className="border-t border-forest-900/10 pt-6">
-            <SectionHeading title="What We" accent="Support" />
+            <SidebarHeading title="What We Support" />
             <ul className="mt-4 space-y-3">
               {supportRequestInfo.whatWeSupport.map((item) => {
                 const Icon = supportIcons[item.icon];
@@ -70,7 +90,7 @@ export default function SupportPage() {
           </div>
 
           <div className="border-t border-forest-900/10 pt-6">
-            <SectionHeading title="Our" accent="Commitment" />
+            <SidebarHeading title="Our Commitment" />
             <p className="mt-3 text-sm text-forest-800/80">{supportRequestInfo.commitment}</p>
           </div>
 
