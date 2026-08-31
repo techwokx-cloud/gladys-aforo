@@ -19,43 +19,6 @@ export default function AboutPage() {
     <>
       <Breadcrumb current="About" />
 
-      {/* Intro */}
-      <section className="relative overflow-hidden bg-cream-100">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div>
-            <SectionHeading eyebrow="About Us" title="In Honor of a" accent="Woman of Grace" />
-            <p className="mt-5 text-forest-800/80">
-              The Gladys Aforo Foundation is a Christian, non-denominational nonprofit
-              organization operating under the Holy-Charity Ministry, headquartered in Accra,
-              Ghana. We exist to support needy mothers and children across Ghana — regardless of
-              background, tribe, or circumstance.
-            </p>
-            <p className="mt-4 text-forest-800/80">
-              We were established in honor of Ms. Gladys Aforo — a woman of remarkable character
-              who lovingly cared for and raised a generation of well-rounded children,
-              grandchildren, and great-grandchildren, and a cherished grandmother to Amira and her
-              siblings.
-            </p>
-            <blockquote className="mt-6 rounded-lg border-l-4 border-gold-500 bg-cream-200 px-5 py-4 font-display italic text-forest-900">
-              &ldquo;Her spirit of sacrificial love is the heartbeat of everything we do.&rdquo;
-              <footer className="mt-1 text-sm not-italic text-gold-600">— The Founders</footer>
-            </blockquote>
-            <p className="mt-4 text-forest-800/80">
-              Her legacy is not simply remembered — it is lived out through every mother we
-              support, every baby we shelter, and every orphan we feed.
-            </p>
-          </div>
-          <div className="relative h-80 overflow-hidden rounded-xl shadow-xl lg:h-[26rem]">
-            <Image
-              src="/images/gallery/g6.jpg"
-              alt="A mother holds her newborn at the maternity ward"
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* In Loving Memory */}
       <section className="bg-forest-950 py-16">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
@@ -102,6 +65,43 @@ export default function AboutPage() {
                 Mama, you gave up everything, just so I could be comfortable.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Intro */}
+      <section className="relative overflow-hidden bg-cream-100">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <div>
+            <SectionHeading eyebrow="About Us" title="In Honor of a" accent="Woman of Grace" />
+            <p className="mt-5 text-forest-800/80">
+              The Gladys Aforo Foundation is a Christian, non-denominational nonprofit
+              organization operating under the Holy-Charity Ministry, headquartered in Accra,
+              Ghana. We exist to support needy mothers and children across Ghana — regardless of
+              background, tribe, or circumstance.
+            </p>
+            <p className="mt-4 text-forest-800/80">
+              We were established in honor of Ms. Gladys Aforo — a woman of remarkable character
+              who lovingly cared for and raised a generation of well-rounded children,
+              grandchildren, and great-grandchildren, and a cherished grandmother to Amira and her
+              siblings.
+            </p>
+            <blockquote className="mt-6 rounded-lg border-l-4 border-gold-500 bg-cream-200 px-5 py-4 font-display italic text-forest-900">
+              &ldquo;Her spirit of sacrificial love is the heartbeat of everything we do.&rdquo;
+              <footer className="mt-1 text-sm not-italic text-gold-600">— The Founders</footer>
+            </blockquote>
+            <p className="mt-4 text-forest-800/80">
+              Her legacy is not simply remembered — it is lived out through every mother we
+              support, every baby we shelter, and every orphan we feed.
+            </p>
+          </div>
+          <div className="relative h-80 overflow-hidden rounded-xl shadow-xl lg:h-[26rem]">
+            <Image
+              src="/images/gallery/g6.jpg"
+              alt="A mother holds her newborn at the maternity ward"
+              fill
+              className="object-cover"
+            />
           </div>
         </div>
       </section>
@@ -171,10 +171,10 @@ export default function AboutPage() {
           </div>
           <div className="relative h-80 overflow-hidden rounded-xl shadow-xl lg:h-[24rem]">
             <Image
-              src="/images/gallery/g9.jpg"
-              alt="Foundation representative with a mother and her newborn"
+              src="/images/memorial/mama-1.jpg"
+              alt="Ms. Gladys Aforo"
               fill
-              className="object-cover"
+              className="object-cover object-top"
             />
           </div>
         </div>

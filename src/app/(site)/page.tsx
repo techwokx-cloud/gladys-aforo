@@ -66,7 +66,33 @@ export default function Home() {
               <Cross className="h-4 w-4" />
               <span className="h-px w-10 bg-gold-500/60" />
             </div>
-            <h1 className="font-display text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
+
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-400">
+              In Loving Memory of Mama Gladys
+            </p>
+            <div className="mt-3 space-y-3 max-w-xl text-sm leading-relaxed text-cream-200/90">
+              <p>
+                My beloved Grandma was the heart of our family. No matter how busy life became
+                or how far apart we drifted, she made sure we never lost sight of what mattered
+                most — family. She kept us together with laughter and joy, yet she was also a
+                strict disciplinarian who taught us the difference between right and wrong.
+              </p>
+              <p>
+                Amira, her beloved granddaughter, was tied to her apron strings and never lacked
+                for anything. Mama devoted her entire life to raising her, at any cost. To
+                everyone, she was &ldquo;Mama&apos;s last born,&rdquo; and she protected her with
+                all her might until the very end.
+              </p>
+              <p>
+                At this point, the only thing that will bring me peace is to honor you — even in
+                your passing — through the Gladys Aforo Foundation, created to bring hope, joy,
+                and life to babies and young children through the love of Jesus Christ, just as
+                you did for me and my very young mother, who struggled to come to terms with all
+                her hardships and suffering.
+              </p>
+            </div>
+
+            <h1 className="mt-8 font-display text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
               Serving <span className="italic text-gold-400">Mothers &amp; Children</span>
               <br />
               In the Name of Christ
