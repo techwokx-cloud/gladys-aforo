@@ -56,6 +56,56 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* In Loving Memory */}
+      <section className="bg-forest-950 py-16">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <div className="relative order-2 h-96 overflow-hidden rounded-xl shadow-xl lg:order-1 lg:h-[30rem]">
+            <Image
+              src="/images/memorial/mama-2.jpg"
+              alt="Ms. Gladys Aforo"
+              fill
+              className="object-cover object-top"
+            />
+          </div>
+          <div className="order-1 lg:order-2">
+            <SectionHeading eyebrow="In Loving Memory" title="Mama Gladys" accent="Our Angel" />
+            <div className="mt-5 space-y-4 text-cream-200">
+              <p>
+                My beloved Grandma was the heart of our family. No matter how busy life became
+                or how far apart we drifted, she made sure we never lost sight of what mattered
+                most — family. She kept us together with laughter and joy, yet she was also a
+                strict disciplinarian who taught us the difference between right and wrong.
+              </p>
+              <p>
+                Amira, her beloved granddaughter, was tied to her apron strings and never lacked
+                for anything. Mama devoted her entire life to raising her, at any cost. To
+                everyone, she was &ldquo;Mama&apos;s last born,&rdquo; and she protected her with
+                all her might until the very end.
+              </p>
+              <p>
+                At this point, the only thing that will bring me peace is to honor you — even in
+                your passing — through the Gladys Aforo Foundation, created to bring hope, joy,
+                and life to babies and young children through the love of Jesus Christ, just as
+                you did for me and my very young mother, who struggled to come to terms with all
+                her hardships and suffering.
+              </p>
+              <blockquote className="rounded-lg border-l-4 border-gold-500 bg-white/5 px-5 py-4 font-display italic text-cream-100">
+                To you, Mama, my very own angel — thank you. I will always love you, even in
+                death. Not a day goes by that I don&apos;t think of you. I am so proud of
+                everything you achieved and of the transformation you brought to my life.
+              </blockquote>
+              <p className="font-display text-lg italic text-gold-400">
+                Mama, this is your foundation. I promise you — your legacy and your name will
+                live on forever.
+              </p>
+              <p className="font-semibold text-white">
+                Mama, you gave up everything, just so I could be comfortable.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Mission & Vision */}
       <section className="bg-cream-200 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

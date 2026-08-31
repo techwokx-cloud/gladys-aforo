@@ -14,7 +14,8 @@ import SectionHeading from "@/components/SectionHeading";
 import DonateBanner from "@/components/DonateBanner";
 import CountUp from "@/components/CountUp";
 import Reveal from "@/components/Reveal";
-import { site, stats } from "@/lib/site";
+import HeroSlideshow from "@/components/HeroSlideshow";
+import { site, stats, memorialPhotos } from "@/lib/site";
 
 const statIcons: Record<string, React.ElementType> = {
   "heart-handshake": HeartHandshake,
@@ -56,17 +57,7 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-forest-950">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/gallery/g6.jpg"
-            alt="Foundation team visiting a mother and newborn at the maternity ward"
-            fill
-            priority
-            className="object-cover object-[70%_30%]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-forest-950 via-forest-950/85 to-forest-950/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-transparent to-transparent" />
-        </div>
+        <HeroSlideshow photos={memorialPhotos} />
 
         <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-14 sm:px-6 lg:px-8 lg:pt-20">
           <div className="max-w-2xl animate-fade-up">
