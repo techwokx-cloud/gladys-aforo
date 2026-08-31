@@ -94,9 +94,10 @@ export default function Home() {
 
             <h1 className="mt-8 font-display text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
               Serving <span className="italic text-gold-400">Mothers &amp; Children</span>
-              <br />
-              In the Name of Christ
             </h1>
+            <p className="mt-2 font-display text-xl font-medium text-gold-400 sm:text-2xl">
+              In the Name of Christ
+            </p>
             <p className="mt-5 text-lg text-cream-200">
               {site.name} · Accra, Ghana
             </p>
