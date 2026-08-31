@@ -104,19 +104,33 @@ export default function Home() {
               <span className="font-semibold text-gold-400">{site.verse.ref}</span> —
               &ldquo;{site.verse.text}&rdquo;
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 rounded-md border border-white/30 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                Our Story
+                <ArrowRight className="h-4 w-4" />
+              </Link>
               <Link
                 href="/programs"
-                className="inline-flex items-center gap-2 rounded-md bg-gold-500 px-6 py-3.5 font-semibold text-forest-950 transition-colors hover:bg-gold-400"
+                className="inline-flex items-center gap-2 rounded-md bg-gold-500 px-5 py-3 text-sm font-semibold text-forest-950 transition-colors hover:bg-gold-400"
               >
                 Our Programs
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/impact"
-                className="inline-flex items-center gap-2 rounded-md border border-white/30 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-md border border-white/30 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
               >
                 See Our Impact
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/support"
+                className="inline-flex items-center gap-2 rounded-md border border-white/30 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                Support
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
