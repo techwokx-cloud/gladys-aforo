@@ -107,7 +107,7 @@ export default async function Home() {
               </p>
             </div>
 
-            <h1 className="mt-8 font-display text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mt-8 whitespace-nowrap font-display text-[clamp(1.35rem,6vw,3.75rem)] font-semibold leading-tight text-white">
               Serving <span className="italic text-gold-400">Mothers &amp; Children</span>
             </h1>
             <p className="mt-2 font-display text-xl font-medium text-gold-400 sm:text-2xl">
