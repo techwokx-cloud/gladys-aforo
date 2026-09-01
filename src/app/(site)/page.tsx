@@ -67,28 +67,39 @@ export default function Home() {
               <span className="h-px w-10 bg-gold-500/60" />
             </div>
 
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-400">
-              In Loving Memory of Mama Gladys
+            <h2 className="font-display text-2xl font-semibold leading-tight text-white sm:text-3xl">
+              In Loving Memory of Gladys Aforo Pedee Newman
+            </h2>
+            <p className="mt-1.5 font-display text-base italic text-gold-400 sm:text-lg">
+              Tenacious Mama, Even in Death
             </p>
-            <div className="mt-3 space-y-3 max-w-xl text-sm leading-relaxed text-cream-200/90">
+            <div className="mt-4 max-w-xl space-y-3 text-sm leading-relaxed text-cream-200/90">
               <p>
-                My beloved Grandma was the heart of our family. No matter how busy life became
-                or how far apart we drifted, she made sure we never lost sight of what mattered
-                most — family. She kept us together with laughter and joy, yet she was also a
-                strict disciplinarian who taught us the difference between right and wrong.
+                My grandmother never lacked anything to give. When my mother, Sheila, found
+                herself blessed with a very pretty baby at an extremely young age, it was my
+                grandmother who insisted the pregnancy be carried through and gave her the
+                strongest support a mother could offer. I owe my life first to God, and then to
+                my beloved grandmother. Were it not for her stance, I would not be here on earth
+                today.
               </p>
               <p>
-                Amira, her beloved granddaughter, was tied to her apron strings and never lacked
-                for anything. Mama devoted her entire life to raising her, at any cost. To
-                everyone, she was &ldquo;Mama&apos;s last born,&rdquo; and she protected her with
-                all her might until the very end.
+                Oh, Mama you fought so hard for both me and my mother to stand tall and weather
+                every storm. No baby should come into this world already suffering simply because
+                there was no money to offer relief. I am walking the same path today, determined
+                not just to spare children from suffering, but to bring them light, comfort,
+                growth, and above all, confidence. I want to offer that same hope to mothers who
+                may be struggling, facing a story like mine because no one determines the destiny
+                of a child except God, our Creator.
               </p>
               <p>
-                At this point, the only thing that will bring me peace is to honor you — even in
-                your passing — through the Gladys Aforo Foundation, created to bring hope, joy,
-                and life to babies and young children through the love of Jesus Christ, just as
-                you did for me and my very young mother, who struggled to come to terms with all
-                her hardships and suffering.
+                My beloved grandmother was the heart of our family. No matter how busy life
+                became, or how far apart we drifted, she made sure we never lost sight of what
+                mattered most: family. She held us together with laughter and joy, while also
+                standing firm as a disciplinarian who taught us the difference between right and
+                wrong.
+              </p>
+              <p className="font-display italic text-gold-400">
+                Her legacy lives on in me, and in every mother and child I now stand for.
               </p>
             </div>
 
