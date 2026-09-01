@@ -1,10 +1,13 @@
 import { Cross, ShieldCheck, Users, HandHeart, Landmark } from "lucide-react";
+import Image from "next/image";
 import Breadcrumb from "@/components/Breadcrumb";
 import SectionHeading from "@/components/SectionHeading";
 import DonateBanner from "@/components/DonateBanner";
-import { boardOfDirectors, executiveStaff, commitments } from "@/lib/site";
+import { commitments } from "@/lib/site";
+import { listTeam } from "@/lib/store";
 
 export const metadata = { title: "Leadership | Gladys Aforo Foundation" };
+export const dynamic = "force-dynamic";
 
 const commitmentIcons: Record<string, React.ElementType> = {
   cross: Cross,
@@ -14,7 +17,19 @@ const commitmentIcons: Record<string, React.ElementType> = {
   landmark: Landmark,
 };
 
-export default function LeadershipPage() {
+function initials(name: string) {
+  return name
+    .split(" ")
+    .map((w) => w[0])
+    .slice(0, 2)
+    .join("");
+}
+
+export default async function LeadershipPage() {
+  const team = await listTeam();
+  const boardOfDirectors = team.filter((m) => m.type === "board").sort((a, b) => a.order - b.order);
+  const executiveStaff = team.filter((m) => m.type === "staff").sort((a, b) => a.order - b.order);
+
   return (
     <>
       <Breadcrumb current="Leadership" />
@@ -64,9 +79,13 @@ export default function LeadershipPage() {
         <SectionHeading title="Board of" accent="Directors" center />
         <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
           {boardOfDirectors.map((m) => (
-            <div key={m.name} className="text-center">
-              <div className="mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-full bg-cream-300 font-display text-2xl font-semibold text-forest-800">
-                {m.initials}
+            <div key={m.id} className="text-center">
+              <div className="relative mx-auto mb-3 flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-cream-300 font-display text-2xl font-semibold text-forest-800">
+                {m.photo ? (
+                  <Image src={m.photo} alt={m.name} fill className="object-cover" />
+                ) : (
+                  initials(m.name)
+                )}
               </div>
               <h4 className="font-display text-base font-semibold text-forest-950">{m.name}</h4>
               <p className="mt-1 text-xs text-gold-600">{m.role}</p>
@@ -77,9 +96,13 @@ export default function LeadershipPage() {
         <SectionHeading title="Executive" accent="Staff" center />
         <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2">
           {executiveStaff.map((m) => (
-            <div key={m.name} className="rounded-lg border border-forest-900/10 bg-cream-200 p-6 text-center">
-              <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-cream-300 font-display text-xl font-semibold text-forest-800">
-                {m.initials}
+            <div key={m.id} className="rounded-lg border border-forest-900/10 bg-cream-200 p-6 text-center">
+              <div className="relative mx-auto mb-3 flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-cream-300 font-display text-xl font-semibold text-forest-800">
+                {m.photo ? (
+                  <Image src={m.photo} alt={m.name} fill className="object-cover" />
+                ) : (
+                  initials(m.name)
+                )}
               </div>
               <h4 className="font-display text-lg font-semibold text-forest-950">{m.name}</h4>
               <p className="mt-1 text-xs font-medium text-gold-600">{m.role}</p>

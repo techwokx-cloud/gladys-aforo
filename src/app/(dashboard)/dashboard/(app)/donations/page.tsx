@@ -4,8 +4,8 @@ import StatusPill from "@/components/dashboard/StatusPill";
 export const metadata = { title: "Donations | Dashboard" };
 export const dynamic = "force-dynamic";
 
-export default function DonationsPage() {
-  const donations = listDonations();
+export default async function DonationsPage() {
+  const donations = await listDonations();
 
   return (
     <div>

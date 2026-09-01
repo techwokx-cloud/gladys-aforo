@@ -4,8 +4,8 @@ import { Mail } from "lucide-react";
 export const metadata = { title: "Messages | Dashboard" };
 export const dynamic = "force-dynamic";
 
-export default function MessagesPage() {
-  const messages = listMessages();
+export default async function MessagesPage() {
+  const messages = await listMessages();
 
   return (
     <div>

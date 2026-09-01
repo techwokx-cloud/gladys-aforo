@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
     }))
   );
 
-  const saved = saveSupportRequest({
+  const saved = await saveSupportRequest({
     id: randomUUID(),
     fullName,
     role,

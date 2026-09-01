@@ -24,9 +24,9 @@ export async function POST(req: NextRequest) {
   const reference = event.data?.reference;
   if (reference) {
     if (event.event === "charge.success") {
-      updateDonationStatus(reference, "success");
+      await updateDonationStatus(reference, "success");
     } else if (event.event === "charge.failed") {
-      updateDonationStatus(reference, "failed");
+      await updateDonationStatus(reference, "failed");
     }
   }
 

@@ -6,10 +6,10 @@ import StatusPill from "@/components/dashboard/StatusPill";
 export const metadata = { title: "Dashboard | Gladys Aforo Foundation" };
 export const dynamic = "force-dynamic";
 
-export default function DashboardOverview() {
-  const donations = listDonations();
-  const messages = listMessages();
-  const requests = listSupportRequests();
+export default async function DashboardOverview() {
+  const donations = await listDonations();
+  const messages = await listMessages();
+  const requests = await listSupportRequests();
 
   const successful = donations.filter((d) => d.status === "success");
   const totalRaised = successful.reduce((sum, d) => sum + d.amount, 0);

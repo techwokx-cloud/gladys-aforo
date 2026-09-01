@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   }
 
   return NextResponse.json({
-    donations: listDonations(),
-    messages: listMessages(),
+    donations: await listDonations(),
+    messages: await listMessages(),
   });
 }

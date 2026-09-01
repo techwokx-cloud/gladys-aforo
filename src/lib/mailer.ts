@@ -1,19 +1,22 @@
 import nodemailer from "nodemailer";
+import { getSmtpSettings } from "@/lib/store";
 
-export function isMailerConfigured() {
-  return Boolean(process.env.SMTP_USER && process.env.SMTP_PASS);
+export async function isMailerConfigured() {
+  const settings = await getSmtpSettings();
+  return Boolean(settings.user && settings.pass);
 }
 
-export function getTransporter() {
-  if (!isMailerConfigured()) return null;
+export async function getTransporter() {
+  const settings = await getSmtpSettings();
+  if (!settings.user || !settings.pass) return null;
 
   return nodemailer.createTransport({
-    host: process.env.SMTP_HOST ?? "smtp.gmail.com",
-    port: Number(process.env.SMTP_PORT ?? 465),
-    secure: (process.env.SMTP_PORT ?? "465") === "465",
+    host: settings.host,
+    port: settings.port,
+    secure: settings.secure,
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
+      user: settings.user,
+      pass: settings.pass,
     },
   });
 }
@@ -24,13 +27,14 @@ export async function sendMail(options: {
   replyTo?: string;
   attachments?: { filename: string; content: Buffer; contentType?: string }[];
 }) {
-  const transporter = getTransporter();
+  const settings = await getSmtpSettings();
+  const transporter = await getTransporter();
   if (!transporter) return { sent: false, reason: "SMTP not configured" };
 
-  const to = process.env.SMTP_TO ?? process.env.SMTP_USER!;
+  const to = settings.to || settings.user;
 
   await transporter.sendMail({
-    from: `"Gladys Aforo Foundation Website" <${process.env.SMTP_USER}>`,
+    from: `"Gladys Aforo Foundation Website" <${settings.user}>`,
     to,
     replyTo: options.replyTo,
     subject: options.subject,

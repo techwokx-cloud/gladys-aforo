@@ -15,7 +15,8 @@ import DonateBanner from "@/components/DonateBanner";
 import CountUp from "@/components/CountUp";
 import Reveal from "@/components/Reveal";
 import HeroSlideshow from "@/components/HeroSlideshow";
-import { site, stats, memorialPhotos } from "@/lib/site";
+import { site, stats } from "@/lib/site";
+import { listMemorialPhotos } from "@/lib/store";
 
 const statIcons: Record<string, React.ElementType> = {
   "heart-handshake": HeartHandshake,
@@ -52,7 +53,10 @@ const featureCards = [
   },
 ];
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const memorialPhotos = await listMemorialPhotos();
   return (
     <>
       {/* Hero */}

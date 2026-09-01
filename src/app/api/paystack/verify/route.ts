@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
     });
     const data = await res.json();
     const status = data?.data?.status === "success" ? "success" : "failed";
-    updateDonationStatus(reference, status);
+    await updateDonationStatus(reference, status);
     return NextResponse.json({ status, raw: data?.data ?? null });
   } catch {
     return NextResponse.json({ status: "unknown" }, { status: 200 });

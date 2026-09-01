@@ -29,11 +29,24 @@ const platformLabel: Record<SocialPost["platform"], string> = {
   general: "General",
 };
 
+const categoryLabel: Record<SocialPost["category"], string> = {
+  general: "General Update",
+  program: "Program",
+  event: "Event",
+};
+
+const statusLabel: Record<SocialPost["status"], string> = {
+  draft: "Draft",
+  scheduled: "Scheduled",
+  posted: "Posted",
+};
+
 export default function SocialComposer({ initialPosts }: { initialPosts: SocialPost[] }) {
   const [posts, setPosts] = useState(initialPosts);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [platform, setPlatform] = useState<SocialPost["platform"]>("general");
+  const [category, setCategory] = useState<SocialPost["category"]>("general");
   const [saving, setSaving] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
@@ -45,7 +58,7 @@ export default function SocialComposer({ initialPosts }: { initialPosts: SocialP
       const res = await fetch("/api/social-posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, content, platform, status: "draft" }),
+        body: JSON.stringify({ title, content, platform, category, status: "draft" }),
       });
       const data = await res.json();
       if (res.ok) {
@@ -56,6 +69,15 @@ export default function SocialComposer({ initialPosts }: { initialPosts: SocialP
     } finally {
       setSaving(false);
     }
+  }
+
+  async function handleStatusChange(id: string, status: SocialPost["status"]) {
+    setPosts((prev) => prev.map((p) => (p.id === id ? { ...p, status } : p)));
+    await fetch("/api/social-posts", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, status }),
+    });
   }
 
   async function handleDelete(id: string) {
@@ -100,16 +122,27 @@ export default function SocialComposer({ initialPosts }: { initialPosts: SocialP
             onChange={(e) => setTitle(e.target.value)}
             className="w-full rounded-md border border-forest-900/15 bg-cream-100 px-3 py-2.5 text-sm focus:border-gold-500 focus:outline-none"
           />
-          <select
-            value={platform}
-            onChange={(e) => setPlatform(e.target.value as SocialPost["platform"])}
-            className="w-full rounded-md border border-forest-900/15 bg-cream-100 px-3 py-2.5 text-sm focus:border-gold-500 focus:outline-none"
-          >
-            <option value="general">General</option>
-            <option value="facebook">Facebook</option>
-            <option value="instagram">Instagram</option>
-            <option value="whatsapp">WhatsApp</option>
-          </select>
+          <div className="grid grid-cols-2 gap-3">
+            <select
+              value={platform}
+              onChange={(e) => setPlatform(e.target.value as SocialPost["platform"])}
+              className="w-full rounded-md border border-forest-900/15 bg-cream-100 px-3 py-2.5 text-sm focus:border-gold-500 focus:outline-none"
+            >
+              <option value="general">General</option>
+              <option value="facebook">Facebook</option>
+              <option value="instagram">Instagram</option>
+              <option value="whatsapp">WhatsApp</option>
+            </select>
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value as SocialPost["category"])}
+              className="w-full rounded-md border border-forest-900/15 bg-cream-100 px-3 py-2.5 text-sm focus:border-gold-500 focus:outline-none"
+            >
+              <option value="general">General Update</option>
+              <option value="program">Program</option>
+              <option value="event">Event</option>
+            </select>
+          </div>
           <textarea
             required
             rows={5}
@@ -141,10 +174,20 @@ export default function SocialComposer({ initialPosts }: { initialPosts: SocialP
               <div>
                 <p className="font-semibold text-forest-950">{p.title}</p>
                 <p className="text-xs text-forest-800/50">
-                  {platformLabel[p.platform]} · {new Date(p.createdAt).toLocaleDateString()}
+                  {platformLabel[p.platform]} · {categoryLabel[p.category] ?? "General Update"} ·{" "}
+                  {new Date(p.createdAt).toLocaleDateString()}
                 </p>
               </div>
-              <div className="flex shrink-0 gap-2">
+              <div className="flex shrink-0 items-center gap-2">
+                <select
+                  value={p.status}
+                  onChange={(e) => handleStatusChange(p.id, e.target.value as SocialPost["status"])}
+                  className="rounded-md border border-forest-900/15 bg-cream-100 px-2 py-1.5 text-xs focus:border-gold-500 focus:outline-none"
+                >
+                  <option value="draft">{statusLabel.draft}</option>
+                  <option value="scheduled">{statusLabel.scheduled}</option>
+                  <option value="posted">{statusLabel.posted}</option>
+                </select>
                 <button
                   onClick={() => copyContent(p)}
                   className="flex items-center gap-1 rounded-md border border-forest-900/15 px-2.5 py-1.5 text-xs text-forest-800/70 hover:border-gold-500"

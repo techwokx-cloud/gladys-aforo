@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Name, email, and message are required." }, { status: 400 });
   }
 
-  const saved = saveMessage({
+  const saved = await saveMessage({
     id: randomUUID(),
     name,
     email,

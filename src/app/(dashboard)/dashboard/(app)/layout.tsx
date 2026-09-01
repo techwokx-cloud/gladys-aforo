@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { LayoutDashboard, HeartHandshake, MessageSquare, ExternalLink, ClipboardList, Share2 } from "lucide-react";
+import { LayoutDashboard, HeartHandshake, MessageSquare, ExternalLink, ClipboardList, Share2, Users, Images, Settings } from "lucide-react";
 import LogoutButton from "@/components/dashboard/LogoutButton";
 import { site } from "@/lib/site";
 
@@ -50,6 +50,24 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <Share2 className="h-4 w-4" /> Social & Outreach
               </Link>
               <Link
+                href="/dashboard/team"
+                className="flex items-center gap-2.5 rounded-md px-3 py-2.5 text-cream-200 hover:bg-white/5"
+              >
+                <Users className="h-4 w-4" /> Board & Staff
+              </Link>
+              <Link
+                href="/dashboard/gallery"
+                className="flex items-center gap-2.5 rounded-md px-3 py-2.5 text-cream-200 hover:bg-white/5"
+              >
+                <Images className="h-4 w-4" /> Photos
+              </Link>
+              <Link
+                href="/dashboard/settings"
+                className="flex items-center gap-2.5 rounded-md px-3 py-2.5 text-cream-200 hover:bg-white/5"
+              >
+                <Settings className="h-4 w-4" /> Settings
+              </Link>
+              <Link
                 href="/"
                 target="_blank"
                 className="flex items-center gap-2.5 rounded-md px-3 py-2.5 text-cream-300 hover:bg-white/5"
@@ -96,6 +114,24 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               className="rounded-full border border-forest-900/15 bg-white px-3 py-1.5"
             >
               Social
+            </Link>
+            <Link
+              href="/dashboard/team"
+              className="rounded-full border border-forest-900/15 bg-white px-3 py-1.5"
+            >
+              Team
+            </Link>
+            <Link
+              href="/dashboard/gallery"
+              className="rounded-full border border-forest-900/15 bg-white px-3 py-1.5"
+            >
+              Photos
+            </Link>
+            <Link
+              href="/dashboard/settings"
+              className="rounded-full border border-forest-900/15 bg-white px-3 py-1.5"
+            >
+              Settings
             </Link>
           </nav>
           {children}

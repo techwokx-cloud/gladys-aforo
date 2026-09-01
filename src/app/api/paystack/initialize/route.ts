@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
   const reference = `GAF-${Date.now()}-${randomUUID().slice(0, 8)}`;
   const normalizedInterval = interval && interval !== "one-time" ? interval : "one-time";
 
-  saveDonation({
+  await saveDonation({
     id: randomUUID(),
     reference,
     firstName,

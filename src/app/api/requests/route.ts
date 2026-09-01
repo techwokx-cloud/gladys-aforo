@@ -7,7 +7,7 @@ export async function GET(req: NextRequest) {
   if (!(await verifySession(token))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  return NextResponse.json({ requests: listSupportRequests() });
+  return NextResponse.json({ requests: await listSupportRequests() });
 }
 
 export async function PATCH(req: NextRequest) {
@@ -21,7 +21,7 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: "id and status are required" }, { status: 400 });
   }
 
-  const updated = updateSupportRequestStatus(id, status);
+  const updated = await updateSupportRequestStatus(id, status);
   if (!updated) {
     return NextResponse.json({ error: "Request not found" }, { status: 404 });
   }

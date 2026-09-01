@@ -2,11 +2,14 @@ import Image from "next/image";
 import Breadcrumb from "@/components/Breadcrumb";
 import SectionHeading from "@/components/SectionHeading";
 import DonateBanner from "@/components/DonateBanner";
-import { galleryImages } from "@/lib/site";
+import { listGalleryImages } from "@/lib/store";
 
 export const metadata = { title: "Gallery | Gladys Aforo Foundation" };
+export const dynamic = "force-dynamic";
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const galleryImages = await listGalleryImages();
+
   return (
     <>
       <Breadcrumb current="Gallery" />
@@ -26,7 +29,7 @@ export default function GalleryPage() {
         <div className="mt-12 columns-1 gap-4 sm:columns-2 lg:columns-3">
           {galleryImages.map((img, i) => (
             <div
-              key={img.src}
+              key={img.id}
               className="mb-4 break-inside-avoid overflow-hidden rounded-lg border border-forest-900/10 bg-white shadow-sm"
             >
               <div

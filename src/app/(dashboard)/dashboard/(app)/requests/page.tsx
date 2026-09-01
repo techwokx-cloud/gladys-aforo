@@ -4,8 +4,8 @@ import RequestsTable from "@/components/dashboard/RequestsTable";
 export const metadata = { title: "Support Requests | Dashboard" };
 export const dynamic = "force-dynamic";
 
-export default function RequestsPage() {
-  const requests = listSupportRequests();
+export default async function RequestsPage() {
+  const requests = await listSupportRequests();
 
   return (
     <div>
