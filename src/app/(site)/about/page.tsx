@@ -27,7 +27,7 @@ export default function AboutPage() {
               src="/images/memorial/mama-2.jpg"
               alt="Ms. Gladys Aforo"
               fill
-              className="object-cover object-top"
+              className="object-cover object-bottom"
             />
           </div>
           <div className="order-1 lg:order-2">
@@ -174,7 +174,7 @@ export default function AboutPage() {
               src="/images/memorial/mama-1.jpg"
               alt="Ms. Gladys Aforo"
               fill
-              className="object-cover object-top"
+              className="object-cover object-bottom"
             />
           </div>
         </div>

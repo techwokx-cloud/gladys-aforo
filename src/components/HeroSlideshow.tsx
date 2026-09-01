@@ -40,7 +40,7 @@ export default function HeroSlideshow({
             alt={photo.alt}
             fill
             priority={i === 0}
-            className="object-cover object-top"
+            className="object-cover object-bottom"
           />
         </div>
       ))}
