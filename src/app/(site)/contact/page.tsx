@@ -55,15 +55,15 @@ export default function ContactPage() {
             <div className="mx-auto my-2 h-px w-10 bg-gold-500/40" />
             <ul className="space-y-3 text-left text-sm text-forest-800/80">
               <li className="flex items-start gap-2">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-600" />
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-700" />
                 {site.contact.address}
               </li>
               <li className="flex items-start gap-2">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold-600" />
+                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold-700" />
                 {site.contact.phones.join(" · ")}
               </li>
               <li className="flex items-start gap-2">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gold-600" />
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gold-700" />
                 {site.contact.email}
               </li>
             </ul>
@@ -85,7 +85,7 @@ export default function ContactPage() {
                   className="flex items-center justify-between rounded-md border border-forest-900/10 bg-white px-4 py-3 text-left"
                 >
                   <span className="text-sm font-medium text-forest-900">{m.network}</span>
-                  <span className="text-sm font-semibold text-gold-600">{m.number}</span>
+                  <span className="text-sm font-semibold text-gold-700">{m.number}</span>
                 </div>
               ))}
             </div>
@@ -94,7 +94,7 @@ export default function ContactPage() {
 
         <div className="mx-auto mt-16 max-w-2xl">
           <h3 className="text-center font-display text-2xl font-semibold text-forest-950">
-            Send Us a <span className="italic text-gold-500">Message</span>
+            Send Us a <span className="italic text-gold-700">Message</span>
           </h3>
           <p className="mt-2 text-center text-sm text-forest-800/70">
             Fill out the form and our team will get back to you as soon as possible.

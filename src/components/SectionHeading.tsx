@@ -17,9 +17,9 @@ export default function SectionHeading({
     <div className={center ? "text-center" : ""}>
       {eyebrow && (
         <div
-          className={`mb-3 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-gold-600 ${
-            center ? "justify-center" : ""
-          } ${light ? "text-gold-400" : ""}`}
+          className={`mb-3 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] ${
+            light ? "text-gold-400" : "text-gold-700"
+          } ${center ? "justify-center" : ""}`}
         >
           <span>{eyebrow}</span>
           <span className="h-px w-8 bg-gold-500/50" />
@@ -27,7 +27,7 @@ export default function SectionHeading({
         </div>
       )}
       <h2 className={`font-display text-3xl sm:text-4xl font-semibold ${light ? "text-white" : "text-forest-950"}`}>
-        {title} {accent && <span className="italic text-gold-500">{accent}</span>}
+        {title} {accent && <span className={`italic ${light ? "text-gold-400" : "text-gold-700"}`}>{accent}</span>}
       </h2>
     </div>
   );

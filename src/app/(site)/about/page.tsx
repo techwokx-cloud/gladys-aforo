@@ -88,7 +88,7 @@ export default function AboutPage() {
             </p>
             <blockquote className="mt-6 rounded-lg border-l-4 border-gold-500 bg-cream-200 px-5 py-4 font-display italic text-forest-900">
               &ldquo;Her spirit of sacrificial love is the heartbeat of everything we do.&rdquo;
-              <footer className="mt-1 text-sm not-italic text-gold-600">— The Founders</footer>
+              <footer className="mt-1 text-sm not-italic text-gold-700">— The Founders</footer>
             </blockquote>
             <p className="mt-4 text-forest-800/80">
               Her legacy is not simply remembered — it is lived out through every mother we
@@ -128,7 +128,7 @@ export default function AboutPage() {
                 <span className="text-gold-400">✦</span>
               </div>
               <h3 className="font-display text-lg font-semibold text-forest-950">Our Vision</h3>
-              <p className="mt-2 text-sm italic text-gold-600">
+              <p className="mt-2 text-sm italic text-gold-700">
                 &ldquo;A Ghana where no mother labors alone and no child suffers in silence — one
                 act of grace at a time.&rdquo;
               </p>
@@ -159,10 +159,10 @@ export default function AboutPage() {
                 expression of the love Christ commanded us to live.
               </p>
               <div className="mt-4 flex items-start gap-3 rounded-md bg-white px-4 py-3">
-                <span className="text-gold-500">♥</span>
+                <span className="text-gold-700">♥</span>
                 <p className="text-sm text-forest-900">
                   Our process is intentionally simple:{" "}
-                  <span className="font-semibold italic text-gold-600">we give.</span> We give to
+                  <span className="font-semibold italic text-gold-700">we give.</span> We give to
                   every Ghanaian mother and baby, from all walks of life and every background,
                   without discrimination and without condition.
                 </p>

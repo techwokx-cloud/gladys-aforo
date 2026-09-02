@@ -5,6 +5,7 @@
   --color-forest-900: #123420;
   --color-forest-800: #1a4429;
   --color-forest-700: #235734;
+  --color-gold-700: #8a6723;
   --color-gold-600: #b8892f;
   --color-gold-500: #c9973c;
   --color-gold-400: #d9ae5c;
@@ -19,6 +20,7 @@
   --color-forest-900: var(--color-forest-900);
   --color-forest-800: var(--color-forest-800);
   --color-forest-700: var(--color-forest-700);
+  --color-gold-700: var(--color-gold-700);
   --color-gold-600: var(--color-gold-600);
   --color-gold-500: var(--color-gold-500);
   --color-gold-400: var(--color-gold-400);
@@ -30,10 +32,18 @@
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
 }
 
+html {
+  /* Slightly larger base size (16px -> ~17px) so every rem-based text size
+     across the site scales up a notch for readability, without needing to
+     touch every component individually. */
+  font-size: 106.25%;
+}
+
 body {
   background: var(--color-cream-100);
   color: var(--color-ink-900);
   font-family: var(--font-sans);
+  line-height: 1.6;
 }
 
 .font-display {

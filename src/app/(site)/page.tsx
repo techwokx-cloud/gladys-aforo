@@ -170,9 +170,9 @@ export default async function Home() {
                       <Icon className="h-5 w-5 text-gold-400" />
                     </div>
                     <h3 className="font-display text-xl font-semibold text-forest-950">
-                      {card.title} {card.accent && <span className="italic text-gold-500">{card.accent}</span>}
+                      {card.title} {card.accent && <span className="italic text-gold-700">{card.accent}</span>}
                     </h3>
-                    <p className="mt-1 text-sm font-medium text-gold-600">{card.tag}</p>
+                    <p className="mt-1 text-sm font-medium text-gold-700">{card.tag}</p>
                     <div className="mx-auto my-3 h-px w-10 bg-gold-500/40" />
                     <p className="text-sm text-forest-800/70">{card.desc}</p>
                   </div>
@@ -221,7 +221,7 @@ export default async function Home() {
             </p>
             <blockquote className="mt-6 rounded-lg border-l-4 border-gold-500 bg-cream-200 px-5 py-4 font-display italic text-forest-900">
               &ldquo;Her spirit of sacrificial love is the heartbeat of everything we do.&rdquo;
-              <footer className="mt-1 text-sm not-italic text-gold-600">— The Founders</footer>
+              <footer className="mt-1 text-sm not-italic text-gold-700">— The Founders</footer>
             </blockquote>
             <p className="mt-4 text-forest-800/80">
               Her legacy is not simply remembered — it is lived out through every mother we
@@ -258,7 +258,7 @@ export default async function Home() {
                   <span className="text-gold-400">✦</span>
                 </div>
                 <h3 className="font-display text-lg font-semibold text-forest-950">Our Vision</h3>
-                <p className="mt-1 text-sm italic text-gold-600">
+                <p className="mt-1 text-sm italic text-gold-700">
                   &ldquo;A Ghana where no mother labors alone and no child suffers in silence — one
                   act of grace at a time.&rdquo;
                 </p>

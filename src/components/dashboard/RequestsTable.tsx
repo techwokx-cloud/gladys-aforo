@@ -5,7 +5,7 @@ import { ChevronDown, Mail, Phone } from "lucide-react";
 import type { SupportRequest } from "@/lib/store";
 
 const statusStyles: Record<SupportRequest["status"], string> = {
-  new: "bg-gold-500/15 text-gold-600",
+  new: "bg-gold-500/15 text-gold-700",
   reviewing: "bg-blue-100 text-blue-700",
   approved: "bg-forest-700/10 text-forest-700",
   declined: "bg-red-100 text-red-600",
@@ -78,7 +78,7 @@ export default function RequestsTable({ initialRequests }: { initialRequests: Su
               <div className="border-t border-forest-900/10 bg-cream-100 px-5 py-4">
                 <div className="grid grid-cols-1 gap-4 text-sm sm:grid-cols-2">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-wide text-gold-600">Requestor</p>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-gold-700">Requestor</p>
                     <p className="mt-1 flex items-center gap-1.5 text-forest-900">
                       <Phone className="h-3.5 w-3.5" /> {r.phone}
                     </p>
@@ -90,7 +90,7 @@ export default function RequestsTable({ initialRequests }: { initialRequests: Su
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-wide text-gold-600">Request Details</p>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-gold-700">Request Details</p>
                     <p className="mt-1 text-forest-900">{r.supportType}</p>
                     <p className="text-forest-800/70">
                       Estimated: GHS {r.estimatedAmount} · Dependents: {r.dependents}
@@ -98,12 +98,12 @@ export default function RequestsTable({ initialRequests }: { initialRequests: Su
                   </div>
                 </div>
                 <div className="mt-3">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-gold-600">Situation</p>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-gold-700">Situation</p>
                   <p className="mt-1 text-sm text-forest-800/80">{r.situation}</p>
                 </div>
                 {r.additionalInfo && (
                   <div className="mt-3">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-gold-600">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-gold-700">
                       Additional Info
                     </p>
                     <p className="mt-1 text-sm text-forest-800/80">{r.additionalInfo}</p>

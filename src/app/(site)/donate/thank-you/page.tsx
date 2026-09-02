@@ -39,7 +39,7 @@ export default async function ThankYouPage({
       body: "It looks like your donation didn't go through. No charge was made. Please try again, or reach out to us if you continue to have trouble.",
     },
     unknown: {
-      icon: <HelpCircle className="h-14 w-14 text-gold-600" />,
+      icon: <HelpCircle className="h-14 w-14 text-gold-700" />,
       title: "Thank You",
       body: "We've received your request. If a payment was made, you'll receive a confirmation email from Paystack shortly. Please contact us if you have any questions about your donation.",
     },

@@ -20,7 +20,7 @@ export default async function MessagesPage() {
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div>
                 <p className="font-semibold text-forest-950">{m.name}</p>
-                <a href={`mailto:${m.email}`} className="flex items-center gap-1 text-xs text-gold-600">
+                <a href={`mailto:${m.email}`} className="flex items-center gap-1 text-xs text-gold-700">
                   <Mail className="h-3 w-3" /> {m.email}
                 </a>
               </div>

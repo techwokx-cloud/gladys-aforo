@@ -127,7 +127,7 @@ export default function TeamManager({ initialTeam }: { initialTeam: TeamMember[]
               </div>
               <div className="min-w-0 flex-1">
                 <p className="truncate font-semibold text-forest-950">{m.name}</p>
-                <p className="text-xs text-gold-600">{m.role}</p>
+                <p className="text-xs text-gold-700">{m.role}</p>
                 {m.description && <p className="mt-1 text-xs text-forest-800/70">{m.description}</p>}
               </div>
               <div className="flex shrink-0 gap-1.5">

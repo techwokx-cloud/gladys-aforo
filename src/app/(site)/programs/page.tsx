@@ -34,7 +34,7 @@ export default function ProgramsPage() {
               children across Accra and beyond.
             </p>
             <div className="mt-5 flex items-start gap-3 rounded-md border border-gold-500/30 bg-cream-200 px-4 py-3">
-              <HandHeart className="mt-0.5 h-5 w-5 shrink-0 text-gold-600" />
+              <HandHeart className="mt-0.5 h-5 w-5 shrink-0 text-gold-700" />
               <p className="text-sm text-forest-900">
                 Every program we run is an act of obedience to the Gospel of compassion.
               </p>
@@ -72,10 +72,10 @@ export default function ProgramsPage() {
                   <Icon className="h-5 w-5 text-gold-400" />
                 </div>
                 <h3 className="font-display text-2xl font-semibold text-forest-950">{p.title}</h3>
-                <p className="mt-1 text-sm font-medium text-gold-600">{p.subtitle}</p>
+                <p className="mt-1 text-sm font-medium text-gold-700">{p.subtitle}</p>
                 <p className="mt-3 max-w-2xl text-sm text-forest-800/80">{p.description}</p>
                 <div className="mt-4 flex items-start gap-2 text-sm text-forest-800/70">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-600" />
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-700" />
                   <span>{p.location}</span>
                 </div>
               </div>

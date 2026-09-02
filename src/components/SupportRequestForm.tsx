@@ -61,7 +61,7 @@ export default function SupportRequestForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gold-600">
+        <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gold-700">
           Requestor Information
         </h4>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -111,7 +111,7 @@ export default function SupportRequestForm() {
       </div>
 
       <div>
-        <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gold-600">
+        <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gold-700">
           About the Family in Need
         </h4>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -173,7 +173,7 @@ export default function SupportRequestForm() {
       </div>
 
       <div>
-        <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gold-600">
+        <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gold-700">
           Additional Information
         </h4>
         <Field label="Any other information that may help us assess this request">
@@ -207,7 +207,7 @@ export default function SupportRequestForm() {
           >
             <UploadCloud className="h-6 w-6 text-forest-800/50" />
             <p className="text-sm text-forest-800/70">
-              Drag &amp; drop files here or <span className="text-gold-600 underline">click to browse</span>
+              Drag &amp; drop files here or <span className="text-gold-700 underline">click to browse</span>
             </p>
             <p className="text-xs text-forest-800/50">PDF, JPG, PNG (Max 5MB each)</p>
             <input
@@ -227,7 +227,7 @@ export default function SupportRequestForm() {
                   className="flex items-center justify-between rounded-md border border-forest-900/10 bg-white px-3 py-2 text-xs text-forest-800/80"
                 >
                   <span className="flex items-center gap-2 truncate">
-                    <FileText className="h-3.5 w-3.5 shrink-0 text-gold-600" />
+                    <FileText className="h-3.5 w-3.5 shrink-0 text-gold-700" />
                     <span className="truncate">{f.name}</span>
                   </span>
                   <button

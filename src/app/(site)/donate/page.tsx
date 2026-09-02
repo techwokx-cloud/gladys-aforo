@@ -67,7 +67,7 @@ export default function DonatePage() {
           })}
         </div>
         <div className="relative mt-8 flex items-center gap-4 overflow-hidden rounded-lg bg-cream-200 px-6 py-5">
-          <span className="text-xl text-gold-500">♥</span>
+          <span className="text-xl text-gold-700">♥</span>
           <p className="text-sm text-forest-900">
             Every donation — big or small — brings hope, healing, and a future to mothers and
             children in need across Ghana.

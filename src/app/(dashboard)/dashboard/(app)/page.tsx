@@ -54,7 +54,7 @@ export default async function DashboardOverview() {
         <div className="rounded-xl border border-forest-900/10 bg-white p-5 shadow-sm">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="font-display text-lg font-semibold text-forest-950">Recent Donations</h2>
-            <Link href="/dashboard/donations" className="flex items-center gap-1 text-xs font-medium text-gold-600">
+            <Link href="/dashboard/donations" className="flex items-center gap-1 text-xs font-medium text-gold-700">
               View all <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
@@ -85,7 +85,7 @@ export default async function DashboardOverview() {
         <div className="rounded-xl border border-forest-900/10 bg-white p-5 shadow-sm">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="font-display text-lg font-semibold text-forest-950">Recent Messages</h2>
-            <Link href="/dashboard/messages" className="flex items-center gap-1 text-xs font-medium text-gold-600">
+            <Link href="/dashboard/messages" className="flex items-center gap-1 text-xs font-medium text-gold-700">
               View all <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>

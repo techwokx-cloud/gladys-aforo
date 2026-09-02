@@ -19,7 +19,7 @@ function SidebarHeading({ title }: { title: string }) {
   return (
     <div>
       <h3 className="font-display text-xl font-semibold text-forest-950">{title}</h3>
-      <div className="mt-2 flex items-center gap-2 text-gold-500">
+      <div className="mt-2 flex items-center gap-2 text-gold-700">
         <span className="h-px w-6 bg-gold-500/50" />
         <span className="text-xs">♥</span>
         <span className="h-px w-6 bg-gold-500/50" />

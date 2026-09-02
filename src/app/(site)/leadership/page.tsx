@@ -42,8 +42,8 @@ export default async function LeadershipPage() {
             accent="in Faith."
           />
           <p className="mt-2 font-display text-2xl text-forest-950">
-            Guided by <span className="italic text-gold-500">Purpose.</span> Driven by{" "}
-            <span className="italic text-gold-500">Love.</span>
+            Guided by <span className="italic text-gold-700">Purpose.</span> Driven by{" "}
+            <span className="italic text-gold-700">Love.</span>
           </p>
           <p className="mt-5 text-forest-800/80">
             Our leadership is committed to good stewardship, transparency, and faithful service to
@@ -51,7 +51,7 @@ export default async function LeadershipPage() {
           </p>
           <blockquote className="mt-6 rounded-lg border-l-4 border-gold-500 bg-cream-200 px-5 py-4 font-display italic text-forest-900">
             &ldquo;Whoever wants to become great among you must be your servant.&rdquo;
-            <footer className="mt-1 text-sm not-italic text-gold-600">— Matthew 20:26</footer>
+            <footer className="mt-1 text-sm not-italic text-gold-700">— Matthew 20:26</footer>
           </blockquote>
         </div>
         <div className="flex items-center justify-center bg-forest-950 px-4 py-16 text-center sm:px-6 lg:px-10">
@@ -88,7 +88,7 @@ export default async function LeadershipPage() {
                 )}
               </div>
               <h4 className="font-display text-base font-semibold text-forest-950">{m.name}</h4>
-              <p className="mt-1 text-xs text-gold-600">{m.role}</p>
+              <p className="mt-1 text-xs text-gold-700">{m.role}</p>
             </div>
           ))}
         </div>
@@ -105,7 +105,7 @@ export default async function LeadershipPage() {
                 )}
               </div>
               <h4 className="font-display text-lg font-semibold text-forest-950">{m.name}</h4>
-              <p className="mt-1 text-xs font-medium text-gold-600">{m.role}</p>
+              <p className="mt-1 text-xs font-medium text-gold-700">{m.role}</p>
               <p className="mt-2 text-sm text-forest-800/80">{m.description}</p>
             </div>
           ))}
