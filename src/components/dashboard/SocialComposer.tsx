@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Trash2, Copy, Check, Loader2 } from "lucide-react";
+import { Plus, Trash2, Copy, Check, Loader2, Send } from "lucide-react";
 import type { SocialPost } from "@/lib/store";
 
 const templates = [
@@ -49,6 +49,8 @@ export default function SocialComposer({ initialPosts }: { initialPosts: SocialP
   const [category, setCategory] = useState<SocialPost["category"]>("general");
   const [saving, setSaving] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [publishingId, setPublishingId] = useState<string | null>(null);
+  const [publishError, setPublishError] = useState<{ id: string; message: string } | null>(null);
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault();
@@ -87,6 +89,24 @@ export default function SocialComposer({ initialPosts }: { initialPosts: SocialP
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
     });
+  }
+
+  async function handlePublish(id: string) {
+    setPublishingId(id);
+    setPublishError(null);
+    try {
+      const res = await fetch(`/api/social-posts/${id}/publish`, { method: "POST" });
+      const data = await res.json();
+      if (res.ok) {
+        setPosts((prev) => prev.map((p) => (p.id === id ? data.post : p)));
+      } else {
+        setPublishError({ id, message: data.error ?? "Failed to publish." });
+      }
+    } catch {
+      setPublishError({ id, message: "Network error while publishing." });
+    } finally {
+      setPublishingId(null);
+    }
   }
 
   function copyContent(post: SocialPost) {
@@ -188,6 +208,20 @@ export default function SocialComposer({ initialPosts }: { initialPosts: SocialP
                   <option value="scheduled">{statusLabel.scheduled}</option>
                   <option value="posted">{statusLabel.posted}</option>
                 </select>
+                {(p.platform === "facebook" || p.platform === "instagram") && p.status !== "posted" && (
+                  <button
+                    onClick={() => handlePublish(p.id)}
+                    disabled={publishingId === p.id}
+                    className="flex items-center gap-1 rounded-md bg-gold-500 px-2.5 py-1.5 text-xs font-semibold text-forest-950 hover:bg-gold-400 disabled:opacity-60"
+                  >
+                    {publishingId === p.id ? (
+                      <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                    ) : (
+                      <Send className="h-3.5 w-3.5" />
+                    )}
+                    Publish Now
+                  </button>
+                )}
                 <button
                   onClick={() => copyContent(p)}
                   className="flex items-center gap-1 rounded-md border border-forest-900/15 px-2.5 py-1.5 text-xs text-forest-800/70 hover:border-gold-500"
@@ -204,6 +238,9 @@ export default function SocialComposer({ initialPosts }: { initialPosts: SocialP
               </div>
             </div>
             <p className="mt-3 whitespace-pre-wrap text-sm text-forest-800/80">{p.content}</p>
+            {publishError?.id === p.id && (
+              <p className="mt-2 rounded-md bg-red-50 px-3 py-2 text-xs text-red-700">{publishError.message}</p>
+            )}
           </div>
         ))}
       </div>

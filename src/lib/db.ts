@@ -122,6 +122,19 @@ CREATE TABLE IF NOT EXISTS smtp_settings (
   smtp_pass TEXT,
   to_email TEXT
 );
+
+CREATE TABLE IF NOT EXISTS publishing_settings (
+  id INT PRIMARY KEY DEFAULT 1,
+  buffer_api_key TEXT,
+  buffer_facebook_channel_id TEXT,
+  buffer_instagram_channel_id TEXT,
+  postiz_base_url TEXT,
+  postiz_api_key TEXT,
+  postiz_facebook_integration_id TEXT,
+  postiz_instagram_integration_id TEXT,
+  facebook_provider TEXT DEFAULT 'none',
+  instagram_provider TEXT DEFAULT 'none'
+);
 `;
 
 export function ensureSchema(): Promise<void> {

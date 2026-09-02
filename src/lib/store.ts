@@ -97,6 +97,20 @@ export type SmtpSettings = {
   to: string;
 };
 
+export type PublishProvider = "none" | "buffer" | "postiz";
+
+export type PublishingSettings = {
+  bufferApiKey: string;
+  bufferFacebookChannelId: string;
+  bufferInstagramChannelId: string;
+  postizBaseUrl: string;
+  postizApiKey: string;
+  postizFacebookIntegrationId: string;
+  postizInstagramIntegrationId: string;
+  facebookProvider: PublishProvider;
+  instagramProvider: PublishProvider;
+};
+
 // ---------------------------------------------------------------------------
 // Donations
 // ---------------------------------------------------------------------------
@@ -517,6 +531,73 @@ export async function saveSmtpSettings(settings: SmtpSettings) {
        host=EXCLUDED.host, port=EXCLUDED.port, secure=EXCLUDED.secure,
        smtp_user=EXCLUDED.smtp_user, smtp_pass=EXCLUDED.smtp_pass, to_email=EXCLUDED.to_email`,
     [settings.host, settings.port, settings.secure, settings.user, settings.pass, settings.to]
+  );
+  return settings;
+}
+
+// ---------------------------------------------------------------------------
+// Social publishing settings (Buffer / Postiz)
+// ---------------------------------------------------------------------------
+
+const defaultPublishingSettings: PublishingSettings = {
+  bufferApiKey: "",
+  bufferFacebookChannelId: "",
+  bufferInstagramChannelId: "",
+  postizBaseUrl: "",
+  postizApiKey: "",
+  postizFacebookIntegrationId: "",
+  postizInstagramIntegrationId: "",
+  facebookProvider: "none",
+  instagramProvider: "none",
+};
+
+export async function getPublishingSettings(): Promise<PublishingSettings> {
+  const pool = await db();
+  const { rows } = await pool.query("SELECT * FROM publishing_settings WHERE id = 1");
+  if (rows.length === 0) return defaultPublishingSettings;
+  const r = rows[0];
+  return {
+    bufferApiKey: r.buffer_api_key ?? "",
+    bufferFacebookChannelId: r.buffer_facebook_channel_id ?? "",
+    bufferInstagramChannelId: r.buffer_instagram_channel_id ?? "",
+    postizBaseUrl: r.postiz_base_url ?? "",
+    postizApiKey: r.postiz_api_key ?? "",
+    postizFacebookIntegrationId: r.postiz_facebook_integration_id ?? "",
+    postizInstagramIntegrationId: r.postiz_instagram_integration_id ?? "",
+    facebookProvider: r.facebook_provider ?? "none",
+    instagramProvider: r.instagram_provider ?? "none",
+  };
+}
+
+export async function savePublishingSettings(settings: PublishingSettings) {
+  const pool = await db();
+  await pool.query(
+    `INSERT INTO publishing_settings (
+       id, buffer_api_key, buffer_facebook_channel_id, buffer_instagram_channel_id,
+       postiz_base_url, postiz_api_key, postiz_facebook_integration_id, postiz_instagram_integration_id,
+       facebook_provider, instagram_provider
+     ) VALUES (1, $1,$2,$3,$4,$5,$6,$7,$8,$9)
+     ON CONFLICT (id) DO UPDATE SET
+       buffer_api_key=EXCLUDED.buffer_api_key,
+       buffer_facebook_channel_id=EXCLUDED.buffer_facebook_channel_id,
+       buffer_instagram_channel_id=EXCLUDED.buffer_instagram_channel_id,
+       postiz_base_url=EXCLUDED.postiz_base_url,
+       postiz_api_key=EXCLUDED.postiz_api_key,
+       postiz_facebook_integration_id=EXCLUDED.postiz_facebook_integration_id,
+       postiz_instagram_integration_id=EXCLUDED.postiz_instagram_integration_id,
+       facebook_provider=EXCLUDED.facebook_provider,
+       instagram_provider=EXCLUDED.instagram_provider`,
+    [
+      settings.bufferApiKey,
+      settings.bufferFacebookChannelId,
+      settings.bufferInstagramChannelId,
+      settings.postizBaseUrl,
+      settings.postizApiKey,
+      settings.postizFacebookIntegrationId,
+      settings.postizInstagramIntegrationId,
+      settings.facebookProvider,
+      settings.instagramProvider,
+    ]
   );
   return settings;
 }
