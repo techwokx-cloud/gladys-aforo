@@ -77,35 +77,17 @@ export default async function Home() {
             <p className="mt-1.5 font-display text-base italic text-gold-400 sm:text-lg">
               Tenacious Mama, Even in Death
             </p>
-            <div className="mt-4 max-w-xl space-y-3 text-sm leading-relaxed text-cream-200/90">
-              <p>
-                My grandmother never lacked anything to give. When my mother, Sheila, found
-                herself blessed with a very pretty baby at an extremely young age, it was my
-                grandmother who insisted the pregnancy be carried through and gave her the
-                strongest support a mother could offer. I owe my life first to God, and then to
-                my beloved grandmother. Were it not for her stance, I would not be here on earth
-                today.
-              </p>
-              <p>
-                Oh, Mama you fought so hard for both me and my mother to stand tall and weather
-                every storm. No baby should come into this world already suffering simply because
-                there was no money to offer relief. I am walking the same path today, determined
-                not just to spare children from suffering, but to bring them light, comfort,
-                growth, and above all, confidence. I want to offer that same hope to mothers who
-                may be struggling, facing a story like mine because no one determines the destiny
-                of a child except God, our Creator.
-              </p>
-              <p>
-                My beloved grandmother was the heart of our family. No matter how busy life
-                became, or how far apart we drifted, she made sure we never lost sight of what
-                mattered most: family. She held us together with laughter and joy, while also
-                standing firm as a disciplinarian who taught us the difference between right and
-                wrong.
-              </p>
-              <p className="font-display italic text-gold-400">
-                Her legacy lives on in me, and in every mother and child I now stand for.
-              </p>
-            </div>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-cream-200/90">
+              My grandmother gave everything so I could stand. This foundation carries her name
+              and her hope forward, to mothers and children walking the same road we once did.
+            </p>
+            <p className="mt-2 text-xs text-cream-300">— Amiratu Yamusah-Sarkodee, Founder</p>
+            <Link
+              href="/about"
+              className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-400 hover:text-gold-300"
+            >
+              Read her full story <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
 
             <h1 className="mt-8 whitespace-nowrap font-display text-[clamp(1.35rem,6vw,3.75rem)] font-semibold leading-tight text-white">
               Serving <span className="italic text-gold-400">Mothers &amp; Children</span>

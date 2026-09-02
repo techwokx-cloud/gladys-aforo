@@ -82,20 +82,6 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-3">
             <a
-              href={site.social.facebook}
-              aria-label="Facebook"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-gold-500/40 text-gold-400 hover:bg-gold-500 hover:text-forest-950 transition-colors"
-            >
-              <FacebookIcon className="h-4 w-4" />
-            </a>
-            <a
-              href={site.social.instagram}
-              aria-label="Instagram"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-gold-500/40 text-gold-400 hover:bg-gold-500 hover:text-forest-950 transition-colors"
-            >
-              <InstagramIcon className="h-4 w-4" />
-            </a>
-            <a
               href={site.social.whatsapp}
               aria-label="WhatsApp"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-gold-500/40 text-gold-400 hover:bg-gold-500 hover:text-forest-950 transition-colors"

@@ -2,8 +2,8 @@ export const site = {
   name: "Gladys Aforo Foundation",
   tagline: "Holy-Charity Ministry · Accra, Ghana",
   verse: {
-    text: "Whoever gives to the poor will not want, but he who hides his eyes will get many a curse.",
-    ref: "Proverbs 28:27",
+    text: "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.",
+    ref: "2 Corinthians 9:7",
   },
   contact: {
     address: "66th Patrice Lumumba Street, Airport Residential, Accra",

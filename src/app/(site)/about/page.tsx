@@ -31,39 +31,36 @@ export default function AboutPage() {
             />
           </div>
           <div className="order-1 lg:order-2">
-            <SectionHeading eyebrow="In Loving Memory" title="Mama Gladys" accent="Our Angel" />
+            <SectionHeading eyebrow="In Loving Memory" title="Gladys Aforo Pedee Newman" accent="Tenacious Mama" />
             <div className="mt-5 space-y-4 text-cream-200">
               <p>
-                My beloved Grandma was the heart of our family. No matter how busy life became
-                or how far apart we drifted, she made sure we never lost sight of what mattered
-                most — family. She kept us together with laughter and joy, yet she was also a
-                strict disciplinarian who taught us the difference between right and wrong.
+                My grandmother never lacked anything to give. When my mother, Sheila, found
+                herself blessed with a very pretty baby at an extremely young age, it was my
+                grandmother who insisted the pregnancy be carried through and gave her the
+                strongest support a mother could offer. I owe my life first to God, and then to
+                my beloved grandmother. Were it not for her stance, I would not be here on earth
+                today.
               </p>
               <p>
-                Amira, her beloved granddaughter, was tied to her apron strings and never lacked
-                for anything. Mama devoted her entire life to raising her, at any cost. To
-                everyone, she was &ldquo;Mama&apos;s last born,&rdquo; and she protected her with
-                all her might until the very end.
+                Oh, Mama you fought so hard for both me and my mother to stand tall and weather
+                every storm. No baby should come into this world already suffering simply because
+                there was no money to offer relief. I am walking the same path today, determined
+                not just to spare children from suffering, but to bring them light, comfort,
+                growth, and above all, confidence. I want to offer that same hope to mothers who
+                may be struggling, facing a story like mine because no one determines the destiny
+                of a child except God, our Creator.
               </p>
               <p>
-                At this point, the only thing that will bring me peace is to honor you — even in
-                your passing — through the Gladys Aforo Foundation, created to bring hope, joy,
-                and life to babies and young children through the love of Jesus Christ, just as
-                you did for me and my very young mother, who struggled to come to terms with all
-                her hardships and suffering.
+                My beloved grandmother was the heart of our family. No matter how busy life
+                became, or how far apart we drifted, she made sure we never lost sight of what
+                mattered most: family. She held us together with laughter and joy, while also
+                standing firm as a disciplinarian who taught us the difference between right and
+                wrong.
               </p>
               <blockquote className="rounded-lg border-l-4 border-gold-500 bg-white/5 px-5 py-4 font-display italic text-cream-100">
-                To you, Mama, my very own angel — thank you. I will always love you, even in
-                death. Not a day goes by that I don&apos;t think of you. I am so proud of
-                everything you achieved and of the transformation you brought to my life.
+                Her legacy lives on in me, and in every mother and child I now stand for.
               </blockquote>
-              <p className="font-display text-lg italic text-gold-400">
-                Mama, this is your foundation. I promise you — your legacy and your name will
-                live on forever.
-              </p>
-              <p className="font-semibold text-white">
-                Mama, you gave up everything, just so I could be comfortable.
-              </p>
+              <p className="text-sm text-cream-300">— Amiratu Yamusah-Sarkodee, Founder</p>
             </div>
           </div>
         </div>
