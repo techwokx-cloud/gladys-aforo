@@ -10,7 +10,6 @@ const quickAmounts = [50, 100, 150, 200, 500];
 export default function DonateForm() {
   const [mode, setMode] = useState<"one-time" | "monthly">("one-time");
   const [amount, setAmount] = useState("100");
-  const [interval, setInterval] = useState("weekly");
   const [count, setCount] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -28,7 +27,8 @@ export default function DonateForm() {
       email: form.get("email"),
       phone: `+233${form.get("phone")}`,
       amount,
-      interval: mode === "one-time" ? "one-time" : interval,
+      // "Monthly Donation" always means monthly — no hidden weekly/annually option.
+      interval: mode === "one-time" ? "one-time" : "monthly",
       count: mode === "monthly" ? count : null,
     };
 
@@ -191,34 +191,44 @@ export default function DonateForm() {
         </div>
 
         {mode === "monthly" && (
-          <div className="mt-4 grid grid-cols-2 gap-4">
-            <div>
-              <label className="mb-1 block text-sm font-semibold text-forest-950">Interval</label>
-              <select
-                value={interval}
-                onChange={(e) => setInterval(e.target.value)}
-                className="w-full rounded-md border border-forest-900/15 bg-cream-100 px-3 py-2.5 text-sm focus:border-gold-500 focus:outline-none"
-              >
-                <option value="weekly">Weekly</option>
-                <option value="monthly">Monthly</option>
-                <option value="annually">Annually</option>
-              </select>
-            </div>
-            <div>
-              <label className="mb-1 block text-sm font-semibold text-forest-950">Count</label>
-              <select
-                value={count}
-                onChange={(e) => setCount(e.target.value)}
-                className="w-full rounded-md border border-forest-900/15 bg-cream-100 px-3 py-2.5 text-sm focus:border-gold-500 focus:outline-none"
-              >
-                <option value="">Charge me indefinitely</option>
-                <option value="6">6 charges</option>
-                <option value="12">12 charges</option>
-                <option value="24">24 charges</option>
-              </select>
-            </div>
+          <div className="mt-4">
+            <label className="mb-1 block text-sm font-semibold text-forest-950">Duration</label>
+            <select
+              value={count}
+              onChange={(e) => setCount(e.target.value)}
+              className="w-full rounded-md border border-forest-900/15 bg-cream-100 px-3 py-2.5 text-sm focus:border-gold-500 focus:outline-none"
+            >
+              <option value="">Continue until I cancel</option>
+              <option value="6">6 months</option>
+              <option value="12">12 months</option>
+              <option value="24">24 months</option>
+            </select>
           </div>
         )}
+
+        <div className="mt-4 rounded-md border border-gold-500/40 bg-cream-200 px-4 py-3 text-sm text-forest-900">
+          {mode === "one-time" ? (
+            <>
+              You&apos;ll give <strong>GHS {amount || 0} once</strong>, today only.
+            </>
+          ) : (
+            <>
+              You&apos;ll give <strong>GHS {amount || 0} every month</strong>
+              {count ? (
+                <>
+                  , for <strong>{count} months</strong> ({(Number(amount || 0) * Number(count)).toLocaleString()} GHS total).
+                </>
+              ) : (
+                <>, continuing until you cancel.</>
+              )}{" "}
+              To change or cancel a recurring donation at any time, contact{" "}
+              <a href={`mailto:${site.contact.email}`} className="underline">
+                {site.contact.email}
+              </a>
+              .
+            </>
+          )}
+        </div>
 
         <p className="mt-4 flex items-center gap-2 text-xs text-forest-800/60">
           <Lock className="h-3.5 w-3.5" />
