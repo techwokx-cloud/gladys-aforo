@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import { Upload, Loader2, X } from "lucide-react";
 
 export default function ImageUploader({
@@ -46,7 +46,7 @@ export default function ImageUploader({
       <div className="flex items-center gap-3">
         <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full bg-cream-300">
           {value ? (
-            <Image src={value} alt="Preview" fill className="object-cover" />
+            <SafeImage src={value} alt="Preview" fill className="object-cover" />
           ) : (
             <div className="flex h-full w-full items-center justify-center text-[10px] text-forest-800/40">
               No photo

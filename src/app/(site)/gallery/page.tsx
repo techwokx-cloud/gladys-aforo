@@ -1,4 +1,4 @@
-import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import Breadcrumb from "@/components/Breadcrumb";
 import SectionHeading from "@/components/SectionHeading";
 import DonateBanner from "@/components/DonateBanner";
@@ -36,7 +36,7 @@ export default async function GalleryPage() {
                 className="relative w-full"
                 style={{ aspectRatio: i % 3 === 0 ? "4/5" : i % 3 === 1 ? "1/1" : "4/3" }}
               >
-                <Image
+                <SafeImage
                   src={img.src}
                   alt={img.alt}
                   fill

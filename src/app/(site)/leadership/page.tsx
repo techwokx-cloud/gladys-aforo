@@ -1,5 +1,5 @@
 import { Cross, ShieldCheck, Users, HandHeart, Landmark } from "lucide-react";
-import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import Breadcrumb from "@/components/Breadcrumb";
 import SectionHeading from "@/components/SectionHeading";
 import DonateBanner from "@/components/DonateBanner";
@@ -82,7 +82,7 @@ export default async function LeadershipPage() {
             <div key={m.id} className="text-center">
               <div className="relative mx-auto mb-3 flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-cream-300 font-display text-2xl font-semibold text-forest-800">
                 {m.photo ? (
-                  <Image src={m.photo} alt={m.name} fill className="object-cover" />
+                  <SafeImage src={m.photo} alt={m.name} fill className="object-cover" />
                 ) : (
                   initials(m.name)
                 )}
@@ -99,7 +99,7 @@ export default async function LeadershipPage() {
             <div key={m.id} className="rounded-lg border border-forest-900/10 bg-cream-200 p-6 text-center">
               <div className="relative mx-auto mb-3 flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-cream-300 font-display text-xl font-semibold text-forest-800">
                 {m.photo ? (
-                  <Image src={m.photo} alt={m.name} fill className="object-cover" />
+                  <SafeImage src={m.photo} alt={m.name} fill className="object-cover" />
                 ) : (
                   initials(m.name)
                 )}

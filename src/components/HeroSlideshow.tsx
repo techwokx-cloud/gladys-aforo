@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import { useEffect, useState } from "react";
 
 type Photo = { src: string; alt: string };
@@ -35,7 +35,7 @@ export default function HeroSlideshow({
             i === index ? "opacity-100" : "opacity-0"
           }`}
         >
-          <Image
+          <SafeImage
             src={photo.src}
             alt={photo.alt}
             fill

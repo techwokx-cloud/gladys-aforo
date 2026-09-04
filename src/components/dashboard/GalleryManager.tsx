@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import { Trash2, Loader2 } from "lucide-react";
 import type { GalleryImage, MemorialPhoto } from "@/lib/store";
 import ImageUploader from "./ImageUploader";
@@ -110,7 +110,7 @@ export default function GalleryManager({
         {items.map((item) => (
           <div key={item.id} className="group relative overflow-hidden rounded-lg border border-forest-900/10 bg-white shadow-sm">
             <div className="relative aspect-square w-full">
-              <Image src={item.src} alt={item.alt} fill className="object-cover" />
+              <SafeImage src={item.src} alt={item.alt} fill className="object-cover" />
             </div>
             <button
               onClick={() => handleDelete(item.id)}

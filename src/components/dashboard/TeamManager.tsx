@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import { Plus, Trash2, Pencil, Loader2, X } from "lucide-react";
 import type { TeamMember } from "@/lib/store";
 import ImageUploader from "./ImageUploader";
@@ -114,7 +114,7 @@ export default function TeamManager({ initialTeam }: { initialTeam: TeamMember[]
             <div key={m.id} className="flex items-start gap-3 rounded-xl border border-forest-900/10 bg-white p-4 shadow-sm">
               <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-cream-300">
                 {m.photo ? (
-                  <Image src={m.photo} alt={m.name} fill className="object-cover" />
+                  <SafeImage src={m.photo} alt={m.name} fill className="object-cover" />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center font-display text-sm font-semibold text-forest-800">
                     {m.name
