@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
   const photo = await saveMemorialPhoto({
     id: randomUUID(),
     src,
-    alt: alt || "Ms. Gladys Aforo",
+    alt: alt || "Ms. Gladys Aforo Pedee Newman",
     order: existing.length,
     createdAt: new Date().toISOString(),
   });

@@ -2,7 +2,7 @@ import Image from "next/image";
 import LoginForm from "@/components/dashboard/LoginForm";
 import { site } from "@/lib/site";
 
-export const metadata = { title: "Admin Login | Gladys Aforo Foundation" };
+export const metadata = { title: "Admin Login | Gladys Aforo Pedee Newman Foundation" };
 
 export default function DashboardLoginPage() {
   return (

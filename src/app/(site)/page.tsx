@@ -196,7 +196,7 @@ export default async function Home() {
               circumstance.
             </p>
             <p className="mt-4 text-forest-800/80">
-              We were established in honor of Ms. Gladys Aforo — a woman of remarkable character
+              We were established in honor of Ms. Gladys Aforo Pedee Newman — a woman of remarkable character
               who lovingly cared for and raised a generation of well-rounded children,
               grandchildren, and great-grandchildren, and a cherished grandmother to Amira and her
               siblings.
@@ -229,7 +229,7 @@ export default async function Home() {
                 </div>
                 <h3 className="font-display text-lg font-semibold text-forest-950">Our Mission</h3>
                 <p className="mt-1 text-sm text-forest-800/80">
-                  To honor the legacy of Ms. Gladys Aforo by providing compassionate,
+                  To honor the legacy of Ms. Gladys Aforo Pedee Newman by providing compassionate,
                   Christ-centered support to needy mothers and children across Ghana — offering
                   medical aid, nourishment, and dignity to those who need it most, from all walks
                   of life and every background.

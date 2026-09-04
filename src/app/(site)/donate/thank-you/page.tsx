@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CheckCircle2, XCircle, HelpCircle, Heart } from "lucide-react";
 import { site } from "@/lib/site";
 
-export const metadata = { title: "Thank You | Gladys Aforo Foundation" };
+export const metadata = { title: "Thank You | Gladys Aforo Pedee Newman Foundation" };
 
 async function verify(reference?: string) {
   if (!reference) return "unknown";

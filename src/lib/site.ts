@@ -1,5 +1,5 @@
 export const site = {
-  name: "Gladys Aforo Foundation",
+  name: "Gladys Aforo Pedee Newman Foundation",
   tagline: "Holy-Charity Ministry · Accra, Ghana",
   verse: {
     text: "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.",
@@ -183,22 +183,22 @@ export const trustBadges = [
   { title: "Faith-Driven", desc: "Every act of giving reflects Christ's love in action.", icon: "cross" },
 ];
 
-// Photos of Ms. Gladys Aforo used in the homepage hero slideshow.
+// Photos of Ms. Gladys Aforo Pedee Newman used in the homepage hero slideshow.
 // This is intentionally a simple array so an admin panel can later read/write
 // it (e.g. from a database or CMS) without changing how the slideshow works —
 // just add more { src, alt } entries here or wire this up to that data source.
 export const memorialPhotos = [
   {
     src: "/images/memorial/mama-1.jpg",
-    alt: "Ms. Gladys Aforo smiling at home",
+    alt: "Ms. Gladys Aforo Pedee Newman smiling at home",
   },
   {
     src: "/images/memorial/mama-2.jpg",
-    alt: "Ms. Gladys Aforo smiling among family",
+    alt: "Ms. Gladys Aforo Pedee Newman smiling among family",
   },
 ];
 
 export const galleryImages = Array.from({ length: 11 }, (_, i) => ({
   src: `/images/gallery/g${i + 1}.jpg`,
-  alt: `Gladys Aforo Foundation outreach photo ${i + 1}`,
+  alt: `Gladys Aforo Pedee Newman Foundation outreach photo ${i + 1}`,
 }));

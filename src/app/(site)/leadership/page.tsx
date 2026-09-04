@@ -6,7 +6,7 @@ import DonateBanner from "@/components/DonateBanner";
 import { commitments } from "@/lib/site";
 import { listTeam } from "@/lib/store";
 
-export const metadata = { title: "Leadership | Gladys Aforo Foundation" };
+export const metadata = { title: "Leadership | Gladys Aforo Pedee Newman Foundation" };
 export const dynamic = "force-dynamic";
 
 const commitmentIcons: Record<string, React.ElementType> = {

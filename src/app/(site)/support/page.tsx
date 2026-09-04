@@ -5,7 +5,7 @@ import DonateBanner from "@/components/DonateBanner";
 import SupportRequestForm from "@/components/SupportRequestForm";
 import { supportRequestInfo, site } from "@/lib/site";
 
-export const metadata = { title: "Request Support | Gladys Aforo Foundation" };
+export const metadata = { title: "Request Support | Gladys Aforo Pedee Newman Foundation" };
 
 const supportIcons: Record<string, React.ElementType> = {
   "heart-pulse": HeartPulse,

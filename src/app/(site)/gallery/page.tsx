@@ -4,7 +4,7 @@ import SectionHeading from "@/components/SectionHeading";
 import DonateBanner from "@/components/DonateBanner";
 import { listGalleryImages } from "@/lib/store";
 
-export const metadata = { title: "Gallery | Gladys Aforo Foundation" };
+export const metadata = { title: "Gallery | Gladys Aforo Pedee Newman Foundation" };
 export const dynamic = "force-dynamic";
 
 export default async function GalleryPage() {

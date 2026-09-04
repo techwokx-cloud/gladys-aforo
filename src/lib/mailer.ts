@@ -34,7 +34,7 @@ export async function sendMail(options: {
   const to = settings.to || settings.user;
 
   await transporter.sendMail({
-    from: `"Gladys Aforo Foundation Website" <${settings.user}>`,
+    from: `"Gladys Aforo Pedee Newman Foundation Website" <${settings.user}>`,
     to,
     replyTo: options.replyTo,
     subject: options.subject,

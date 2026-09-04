@@ -45,7 +45,7 @@ export default function Footer() {
             <div>
               <p className="font-display text-lg font-semibold text-white">{site.name}</p>
               <p className="text-sm text-gold-400">{site.tagline}</p>
-              <p className="mt-1 text-xs text-cream-300">Est. in Honor of Ms. Gladys Aforo</p>
+              <p className="mt-1 text-xs text-cream-300">Est. in Honor of Ms. Gladys Aforo Pedee Newman</p>
             </div>
           </div>
 

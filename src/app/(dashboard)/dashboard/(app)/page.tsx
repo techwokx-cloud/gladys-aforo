@@ -3,7 +3,7 @@ import { HandCoins, Users, MessageSquare, TrendingUp, ArrowRight, ClipboardList 
 import { listDonations, listMessages, listSupportRequests } from "@/lib/store";
 import StatusPill from "@/components/dashboard/StatusPill";
 
-export const metadata = { title: "Dashboard | Gladys Aforo Foundation" };
+export const metadata = { title: "Dashboard | Gladys Aforo Pedee Newman Foundation" };
 export const dynamic = "force-dynamic";
 
 export default async function DashboardOverview() {

@@ -18,7 +18,7 @@ import CountUp from "@/components/CountUp";
 import Reveal from "@/components/Reveal";
 import { stats, impactMetrics, trustBadges } from "@/lib/site";
 
-export const metadata = { title: "Our Impact | Gladys Aforo Foundation" };
+export const metadata = { title: "Our Impact | Gladys Aforo Pedee Newman Foundation" };
 
 const statIcons: Record<string, React.ElementType> = {
   "heart-handshake": HeartHandshake,

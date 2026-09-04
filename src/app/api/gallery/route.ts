@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
   const image = await saveGalleryImage({
     id: randomUUID(),
     src,
-    alt: alt || "Gladys Aforo Foundation outreach photo",
+    alt: alt || "Gladys Aforo Pedee Newman Foundation outreach photo",
     order: existing.length,
     createdAt: new Date().toISOString(),
   });

@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const result = await sendMail({
-      subject: "Test Email — Gladys Aforo Foundation Dashboard",
+      subject: "Test Email — Gladys Aforo Pedee Newman Foundation Dashboard",
       html: "<p>This is a test email confirming your SMTP settings are working correctly.</p>",
     });
     if (!result.sent) {

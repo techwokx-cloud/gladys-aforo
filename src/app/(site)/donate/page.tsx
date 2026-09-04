@@ -5,7 +5,7 @@ import SectionHeading from "@/components/SectionHeading";
 import DonateForm from "@/components/DonateForm";
 import { impactMetrics, trustBadges, site } from "@/lib/site";
 
-export const metadata = { title: "Donate | Gladys Aforo Foundation" };
+export const metadata = { title: "Donate | Gladys Aforo Pedee Newman Foundation" };
 
 const metricIcons: Record<string, React.ElementType> = {
   stethoscope: Stethoscope,

@@ -4,7 +4,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import ContactForm from "@/components/ContactForm";
 import { site } from "@/lib/site";
 
-export const metadata = { title: "Contact Us | Gladys Aforo Foundation" };
+export const metadata = { title: "Contact Us | Gladys Aforo Pedee Newman Foundation" };
 
 export default function ContactPage() {
   return (

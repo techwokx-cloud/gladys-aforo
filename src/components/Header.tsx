@@ -24,9 +24,9 @@ export default function Header() {
             priority
           />
           <span className="leading-tight">
-            <span className="block font-display text-base sm:text-lg font-semibold text-white">
+            <span className="block font-display text-sm sm:text-base font-semibold text-white">
               Gladys Aforo
-              <span className="block sm:inline sm:ml-1">Foundation</span>
+              <span className="block sm:inline sm:ml-1">Pedee Newman Foundation</span>
             </span>
             <span className="hidden sm:block text-[11px] tracking-wide text-gold-400">
               {site.tagline}
