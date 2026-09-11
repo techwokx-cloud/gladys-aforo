@@ -5,7 +5,7 @@ import SectionHeading from "@/components/SectionHeading";
 import DonateBanner from "@/components/DonateBanner";
 import { coreValues } from "@/lib/site";
 
-export const metadata = { title: "About Us | Gladys Aforo Pedee Newman Foundation" };
+export const metadata = { title: "About Us | Gladys Aforo Pedei Newman Foundation" };
 
 const valueIcons: Record<string, React.ElementType> = {
   "hand-heart": HandHeart,
@@ -25,13 +25,13 @@ export default function AboutPage() {
           <div className="relative order-2 h-96 overflow-hidden rounded-xl shadow-xl lg:order-1 lg:h-[30rem]">
             <Image
               src="/images/memorial/mama-2.jpg"
-              alt="Ms. Gladys Aforo Pedee Newman"
+              alt="Ms. Gladys Aforo Pedei Newman"
               fill
               className="object-cover object-bottom"
             />
           </div>
           <div className="order-1 lg:order-2">
-            <SectionHeading eyebrow="In Loving Memory" title="Gladys Aforo Pedee Newman" accent="Tenacious Mama" />
+            <SectionHeading eyebrow="In Loving Memory" title="Gladys Aforo Pedei Newman" accent="Tenacious Mama" />
             <div className="mt-5 space-y-4 text-cream-200">
               <p>
                 My grandmother never lacked anything to give. When my mother, Sheila, found
@@ -72,13 +72,13 @@ export default function AboutPage() {
           <div>
             <SectionHeading eyebrow="About Us" title="In Honor of a" accent="Woman of Grace" />
             <p className="mt-5 text-forest-800/80">
-              The Gladys Aforo Pedee Newman Foundation is a Christian, non-denominational nonprofit
+              The Gladys Aforo Pedei Newman Foundation is a Christian, non-denominational nonprofit
               organization operating under the Holy-Charity Ministry, headquartered in Accra,
               Ghana. We exist to support needy mothers and children across Ghana — regardless of
               background, tribe, or circumstance.
             </p>
             <p className="mt-4 text-forest-800/80">
-              We were established in honor of Ms. Gladys Aforo Pedee Newman — a woman of remarkable character
+              We were established in honor of Ms. Gladys Aforo Pedei Newman — a woman of remarkable character
               who lovingly cared for and raised a generation of well-rounded children,
               grandchildren, and great-grandchildren, and a cherished grandmother to Amira and her
               siblings.
@@ -114,7 +114,7 @@ export default function AboutPage() {
               </div>
               <h3 className="font-display text-lg font-semibold text-forest-950">Our Mission</h3>
               <p className="mt-2 text-sm text-forest-800/80">
-                To honor the legacy of Ms. Gladys Aforo Pedee Newman by providing compassionate,
+                To honor the legacy of Ms. Gladys Aforo Pedei Newman by providing compassionate,
                 Christ-centered support to needy mothers and children across Ghana — offering
                 medical aid, nourishment, and dignity to those who need it most, from all walks of
                 life and every background.
@@ -169,7 +169,7 @@ export default function AboutPage() {
           <div className="relative h-80 overflow-hidden rounded-xl shadow-xl lg:h-[24rem]">
             <Image
               src="/images/memorial/mama-1.jpg"
-              alt="Ms. Gladys Aforo Pedee Newman"
+              alt="Ms. Gladys Aforo Pedei Newman"
               fill
               className="object-cover object-bottom"
             />

@@ -6,7 +6,7 @@ import DonateBanner from "@/components/DonateBanner";
 import Reveal from "@/components/Reveal";
 import { programs } from "@/lib/site";
 
-export const metadata = { title: "Our Programs | Gladys Aforo Pedee Newman Foundation" };
+export const metadata = { title: "Our Programs | Gladys Aforo Pedei Newman Foundation" };
 
 const programIcons: Record<string, React.ElementType> = {
   "heart-pulse": HeartPulse,

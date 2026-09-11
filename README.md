@@ -1,6 +1,6 @@
-# Gladys Aforo Pedee Newman Foundation — Website & Dashboard
+# Gladys Aforo Pedei Newman Foundation — Website & Dashboard
 
-A Next.js 16 (App Router, TypeScript, Tailwind CSS v4) site for the Gladys Aforo Pedee Newman Foundation, built
+A Next.js 16 (App Router, TypeScript, Tailwind CSS v4) site for the Gladys Aforo Pedei Newman Foundation, built
 from the provided page designs. Includes a public marketing site, a Paystack-integrated donation
 flow, and a password-protected admin dashboard.
 
