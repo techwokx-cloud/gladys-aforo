@@ -7,6 +7,12 @@ async function db() {
   return getPool();
 }
 
+/** mysql2 needs a JS Date object for DATETIME columns — a raw ISO 8601
+ * string (with "T"/"Z"/milliseconds) is rejected by MySQL/MariaDB. */
+function toDate(iso: string): Date {
+  return new Date(iso);
+}
+
 export type Donation = {
   id: string;
   reference: string;
@@ -125,7 +131,7 @@ function rowToDonation(r: any): Donation {
     phone: r.phone,
     amount: Number(r.amount),
     currency: r.currency,
-    interval: r.interval,
+    interval: r.interval_type,
     status: r.status,
     createdAt: r.created_at instanceof Date ? r.created_at.toISOString() : r.created_at,
   };
@@ -140,12 +146,12 @@ export async function listDonations(): Promise<Donation[]> {
 export async function saveDonation(donation: Donation): Promise<Donation> {
   const pool = await db();
   await pool.query(
-    `INSERT INTO donations (id, reference, first_name, last_name, email, phone, amount, currency, interval, status, created_at)
+    `INSERT INTO donations (id, reference, first_name, last_name, email, phone, amount, currency, interval_type, status, created_at)
      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
-     ON CONFLICT (reference) DO UPDATE SET
-       first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, email = EXCLUDED.email,
-       phone = EXCLUDED.phone, amount = EXCLUDED.amount, currency = EXCLUDED.currency,
-       interval = EXCLUDED.interval, status = EXCLUDED.status`,
+     ON DUPLICATE KEY UPDATE
+       first_name = VALUES(first_name), last_name = VALUES(last_name), email = VALUES(email),
+       phone = VALUES(phone), amount = VALUES(amount), currency = VALUES(currency),
+       interval_type = VALUES(interval_type), status = VALUES(status)`,
     [
       donation.id,
       donation.reference,
@@ -157,7 +163,7 @@ export async function saveDonation(donation: Donation): Promise<Donation> {
       donation.currency,
       donation.interval,
       donation.status,
-      donation.createdAt,
+      toDate(donation.createdAt),
     ]
   );
   return donation;
@@ -165,10 +171,8 @@ export async function saveDonation(donation: Donation): Promise<Donation> {
 
 export async function updateDonationStatus(reference: string, status: Donation["status"]) {
   const pool = await db();
-  const { rows } = await pool.query(
-    "UPDATE donations SET status = $2 WHERE reference = $1 RETURNING *",
-    [reference, status]
-  );
+  await pool.query("UPDATE donations SET status = $2 WHERE reference = $1", [reference, status]);
+  const { rows } = await pool.query("SELECT * FROM donations WHERE reference = $1", [reference]);
   return rows[0] ? rowToDonation(rows[0]) : null;
 }
 
@@ -197,7 +201,7 @@ export async function saveMessage(msg: ContactMessage): Promise<ContactMessage> 
   const pool = await db();
   await pool.query(
     `INSERT INTO messages (id, name, email, subject, message, created_at) VALUES ($1,$2,$3,$4,$5,$6)`,
-    [msg.id, msg.name, msg.email, msg.subject ?? null, msg.message, msg.createdAt]
+    [msg.id, msg.name, msg.email, msg.subject ?? null, msg.message, toDate(msg.createdAt)]
   );
   return msg;
 }
@@ -207,6 +211,12 @@ export async function saveMessage(msg: ContactMessage): Promise<ContactMessage> 
 // ---------------------------------------------------------------------------
 
 function rowToSupportRequest(r: any): SupportRequest {
+  let attachmentNames: string[] = [];
+  try {
+    attachmentNames = r.attachment_names ? JSON.parse(r.attachment_names) : [];
+  } catch {
+    attachmentNames = [];
+  }
   return {
     id: r.id,
     fullName: r.full_name,
@@ -222,7 +232,7 @@ function rowToSupportRequest(r: any): SupportRequest {
     estimatedAmount: r.estimated_amount,
     urgency: r.urgency,
     additionalInfo: r.additional_info ?? undefined,
-    attachmentNames: r.attachment_names ?? [],
+    attachmentNames,
     status: r.status,
     createdAt: r.created_at instanceof Date ? r.created_at.toISOString() : r.created_at,
   };
@@ -258,7 +268,7 @@ export async function saveSupportRequest(req: SupportRequest): Promise<SupportRe
       req.additionalInfo ?? null,
       JSON.stringify(req.attachmentNames ?? []),
       req.status,
-      req.createdAt,
+      toDate(req.createdAt),
     ]
   );
   return req;
@@ -266,10 +276,8 @@ export async function saveSupportRequest(req: SupportRequest): Promise<SupportRe
 
 export async function updateSupportRequestStatus(id: string, status: SupportRequest["status"]) {
   const pool = await db();
-  const { rows } = await pool.query(
-    "UPDATE support_requests SET status = $2 WHERE id = $1 RETURNING *",
-    [id, status]
-  );
+  await pool.query("UPDATE support_requests SET status = $2 WHERE id = $1", [id, status]);
+  const { rows } = await pool.query("SELECT * FROM support_requests WHERE id = $1", [id]);
   return rows[0] ? rowToSupportRequest(rows[0]) : null;
 }
 
@@ -301,7 +309,7 @@ export async function saveSocialPost(post: SocialPost): Promise<SocialPost> {
   await pool.query(
     `INSERT INTO social_posts (id, title, content, platform, category, status, scheduled_for, created_at)
      VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
-    [post.id, post.title, post.content, post.platform, post.category, post.status, post.scheduledFor ?? null, post.createdAt]
+    [post.id, post.title, post.content, post.platform, post.category, post.status, post.scheduledFor ?? null, toDate(post.createdAt)]
   );
   return post;
 }
@@ -341,7 +349,7 @@ function rowToTeamMember(r: any): TeamMember {
 }
 
 async function seedTeamIfEmpty(pool: Awaited<ReturnType<typeof db>>) {
-  const { rows } = await pool.query("SELECT COUNT(*)::int AS count FROM team_members");
+  const { rows } = await pool.query("SELECT COUNT(*) AS count FROM team_members");
   if (rows[0].count > 0) return;
 
   const now = new Date().toISOString();
@@ -359,7 +367,7 @@ async function seedTeamIfEmpty(pool: Awaited<ReturnType<typeof db>>) {
     await pool.query(
       `INSERT INTO team_members (id, type, name, role, description, photo, sort_order, created_at)
        VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
-      [randomUUID(), m.type, m.name, m.role, m.description, null, m.order, now]
+      [randomUUID(), m.type, m.name, m.role, m.description, null, m.order, toDate(now)]
     );
   }
 }
@@ -376,7 +384,7 @@ export async function saveTeamMember(member: TeamMember): Promise<TeamMember> {
   await pool.query(
     `INSERT INTO team_members (id, type, name, role, description, photo, sort_order, created_at)
      VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
-    [member.id, member.type, member.name, member.role, member.description ?? null, member.photo ?? null, member.order, member.createdAt]
+    [member.id, member.type, member.name, member.role, member.description ?? null, member.photo ?? null, member.order, toDate(member.createdAt)]
   );
   return member;
 }
@@ -413,14 +421,14 @@ function rowToGalleryImage(r: any): GalleryImage {
 }
 
 async function seedGalleryIfEmpty(pool: Awaited<ReturnType<typeof db>>) {
-  const { rows } = await pool.query("SELECT COUNT(*)::int AS count FROM gallery_images");
+  const { rows } = await pool.query("SELECT COUNT(*) AS count FROM gallery_images");
   if (rows[0].count > 0) return;
   const now = new Date().toISOString();
   for (let i = 0; i < galleryImages.length; i++) {
     const img = galleryImages[i];
     await pool.query(
       `INSERT INTO gallery_images (id, src, alt, sort_order, created_at) VALUES ($1,$2,$3,$4,$5)`,
-      [randomUUID(), img.src, img.alt, i, now]
+      [randomUUID(), img.src, img.alt, i, toDate(now)]
     );
   }
 }
@@ -436,7 +444,7 @@ export async function saveGalleryImage(image: GalleryImage): Promise<GalleryImag
   const pool = await db();
   await pool.query(
     `INSERT INTO gallery_images (id, src, alt, sort_order, created_at) VALUES ($1,$2,$3,$4,$5)`,
-    [image.id, image.src, image.alt, image.order, image.createdAt]
+    [image.id, image.src, image.alt, image.order, toDate(image.createdAt)]
   );
   return image;
 }
@@ -461,14 +469,14 @@ function rowToMemorialPhoto(r: any): MemorialPhoto {
 }
 
 async function seedMemorialPhotosIfEmpty(pool: Awaited<ReturnType<typeof db>>) {
-  const { rows } = await pool.query("SELECT COUNT(*)::int AS count FROM memorial_photos");
+  const { rows } = await pool.query("SELECT COUNT(*) AS count FROM memorial_photos");
   if (rows[0].count > 0) return;
   const now = new Date().toISOString();
   for (let i = 0; i < memorialPhotos.length; i++) {
     const img = memorialPhotos[i];
     await pool.query(
       `INSERT INTO memorial_photos (id, src, alt, sort_order, created_at) VALUES ($1,$2,$3,$4,$5)`,
-      [randomUUID(), img.src, img.alt, i, now]
+      [randomUUID(), img.src, img.alt, i, toDate(now)]
     );
   }
 }
@@ -484,7 +492,7 @@ export async function saveMemorialPhoto(photo: MemorialPhoto): Promise<MemorialP
   const pool = await db();
   await pool.query(
     `INSERT INTO memorial_photos (id, src, alt, sort_order, created_at) VALUES ($1,$2,$3,$4,$5)`,
-    [photo.id, photo.src, photo.alt, photo.order, photo.createdAt]
+    [photo.id, photo.src, photo.alt, photo.order, toDate(photo.createdAt)]
   );
   return photo;
 }
@@ -515,7 +523,7 @@ export async function getSmtpSettings(): Promise<SmtpSettings> {
   return {
     host: r.host ?? defaultSmtpSettings.host,
     port: r.port ?? defaultSmtpSettings.port,
-    secure: r.secure ?? defaultSmtpSettings.secure,
+    secure: r.secure === null || r.secure === undefined ? defaultSmtpSettings.secure : Boolean(r.secure),
     user: r.smtp_user ?? defaultSmtpSettings.user,
     pass: r.smtp_pass ?? defaultSmtpSettings.pass,
     to: r.to_email ?? defaultSmtpSettings.to,
@@ -527,9 +535,9 @@ export async function saveSmtpSettings(settings: SmtpSettings) {
   await pool.query(
     `INSERT INTO smtp_settings (id, host, port, secure, smtp_user, smtp_pass, to_email)
      VALUES (1, $1,$2,$3,$4,$5,$6)
-     ON CONFLICT (id) DO UPDATE SET
-       host=EXCLUDED.host, port=EXCLUDED.port, secure=EXCLUDED.secure,
-       smtp_user=EXCLUDED.smtp_user, smtp_pass=EXCLUDED.smtp_pass, to_email=EXCLUDED.to_email`,
+     ON DUPLICATE KEY UPDATE
+       host=VALUES(host), port=VALUES(port), secure=VALUES(secure),
+       smtp_user=VALUES(smtp_user), smtp_pass=VALUES(smtp_pass), to_email=VALUES(to_email)`,
     [settings.host, settings.port, settings.secure, settings.user, settings.pass, settings.to]
   );
   return settings;
@@ -577,16 +585,16 @@ export async function savePublishingSettings(settings: PublishingSettings) {
        postiz_base_url, postiz_api_key, postiz_facebook_integration_id, postiz_instagram_integration_id,
        facebook_provider, instagram_provider
      ) VALUES (1, $1,$2,$3,$4,$5,$6,$7,$8,$9)
-     ON CONFLICT (id) DO UPDATE SET
-       buffer_api_key=EXCLUDED.buffer_api_key,
-       buffer_facebook_channel_id=EXCLUDED.buffer_facebook_channel_id,
-       buffer_instagram_channel_id=EXCLUDED.buffer_instagram_channel_id,
-       postiz_base_url=EXCLUDED.postiz_base_url,
-       postiz_api_key=EXCLUDED.postiz_api_key,
-       postiz_facebook_integration_id=EXCLUDED.postiz_facebook_integration_id,
-       postiz_instagram_integration_id=EXCLUDED.postiz_instagram_integration_id,
-       facebook_provider=EXCLUDED.facebook_provider,
-       instagram_provider=EXCLUDED.instagram_provider`,
+     ON DUPLICATE KEY UPDATE
+       buffer_api_key=VALUES(buffer_api_key),
+       buffer_facebook_channel_id=VALUES(buffer_facebook_channel_id),
+       buffer_instagram_channel_id=VALUES(buffer_instagram_channel_id),
+       postiz_base_url=VALUES(postiz_base_url),
+       postiz_api_key=VALUES(postiz_api_key),
+       postiz_facebook_integration_id=VALUES(postiz_facebook_integration_id),
+       postiz_instagram_integration_id=VALUES(postiz_instagram_integration_id),
+       facebook_provider=VALUES(facebook_provider),
+       instagram_provider=VALUES(instagram_provider)`,
     [
       settings.bufferApiKey,
       settings.bufferFacebookChannelId,
