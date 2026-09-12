@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
+import { site } from "@/lib/site";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -104,6 +105,15 @@ export default function ChatWidget() {
             {loading && <p className="text-xs text-forest-800/50">Typing…</p>}
             {error && <p className="text-xs text-red-600">{error}</p>}
           </div>
+
+          <a
+            href={site.social.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-1.5 border-t border-forest-900/10 bg-cream-100 py-2 text-xs font-medium text-forest-800/70 hover:text-forest-900"
+          >
+            Prefer a real person? Chat with us on WhatsApp →
+          </a>
 
           <div className="flex items-center gap-2 border-t border-forest-900/10 bg-white p-2.5">
             <input
