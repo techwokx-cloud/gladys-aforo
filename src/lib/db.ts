@@ -199,6 +199,33 @@ CREATE TABLE IF NOT EXISTS publishing_settings (
   facebook_provider VARCHAR(20) DEFAULT 'none',
   instagram_provider VARCHAR(20) DEFAULT 'none'
 );
+
+CREATE TABLE IF NOT EXISTS chat_conversations (
+  id VARCHAR(36) PRIMARY KEY,
+  visitor_name TEXT,
+  visitor_contact TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS chat_messages (
+  id VARCHAR(36) PRIMARY KEY,
+  conversation_id VARCHAR(36) NOT NULL,
+  role VARCHAR(10) NOT NULL,
+  content TEXT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS whatsapp_settings (
+  id INT PRIMARY KEY DEFAULT 1,
+  phone_number_id TEXT,
+  access_token TEXT,
+  template_name TEXT DEFAULT 'website_chat_notification',
+  recipient_1 TEXT,
+  recipient_2 TEXT,
+  recipient_3 TEXT,
+  recipient_4 TEXT,
+  recipient_5 TEXT
+);
 `;
 
 export function ensureSchema(): Promise<void> {

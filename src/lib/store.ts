@@ -117,6 +117,32 @@ export type PublishingSettings = {
   instagramProvider: PublishProvider;
 };
 
+export type WhatsAppSettings = {
+  phoneNumberId: string;
+  accessToken: string;
+  templateName: string;
+  recipient1: string;
+  recipient2: string;
+  recipient3: string;
+  recipient4: string;
+  recipient5: string;
+};
+
+export type ChatConversation = {
+  id: string;
+  visitorName?: string;
+  visitorContact?: string;
+  createdAt: string;
+};
+
+export type ChatMessage = {
+  id: string;
+  conversationId: string;
+  role: "user" | "assistant";
+  content: string;
+  createdAt: string;
+};
+
 // ---------------------------------------------------------------------------
 // Donations
 // ---------------------------------------------------------------------------
@@ -608,4 +634,121 @@ export async function savePublishingSettings(settings: PublishingSettings) {
     ]
   );
   return settings;
+}
+
+// ---------------------------------------------------------------------------
+// WhatsApp notification settings
+// ---------------------------------------------------------------------------
+
+const defaultWhatsAppSettings: WhatsAppSettings = {
+  phoneNumberId: "",
+  accessToken: "",
+  templateName: "website_chat_notification",
+  recipient1: "",
+  recipient2: "",
+  recipient3: "",
+  recipient4: "",
+  recipient5: "",
+};
+
+export async function getWhatsAppSettings(): Promise<WhatsAppSettings> {
+  const pool = await db();
+  const { rows } = await pool.query("SELECT * FROM whatsapp_settings WHERE id = 1");
+  if (rows.length === 0) return defaultWhatsAppSettings;
+  const r = rows[0];
+  return {
+    phoneNumberId: r.phone_number_id ?? "",
+    accessToken: r.access_token ?? "",
+    templateName: r.template_name ?? defaultWhatsAppSettings.templateName,
+    recipient1: r.recipient_1 ?? "",
+    recipient2: r.recipient_2 ?? "",
+    recipient3: r.recipient_3 ?? "",
+    recipient4: r.recipient_4 ?? "",
+    recipient5: r.recipient_5 ?? "",
+  };
+}
+
+export async function saveWhatsAppSettings(settings: WhatsAppSettings) {
+  const pool = await db();
+  await pool.query(
+    `INSERT INTO whatsapp_settings (id, phone_number_id, access_token, template_name, recipient_1, recipient_2, recipient_3, recipient_4, recipient_5)
+     VALUES (1, $1,$2,$3,$4,$5,$6,$7,$8)
+     ON DUPLICATE KEY UPDATE
+       phone_number_id=VALUES(phone_number_id), access_token=VALUES(access_token), template_name=VALUES(template_name),
+       recipient_1=VALUES(recipient_1), recipient_2=VALUES(recipient_2), recipient_3=VALUES(recipient_3),
+       recipient_4=VALUES(recipient_4), recipient_5=VALUES(recipient_5)`,
+    [
+      settings.phoneNumberId,
+      settings.accessToken,
+      settings.templateName,
+      settings.recipient1,
+      settings.recipient2,
+      settings.recipient3,
+      settings.recipient4,
+      settings.recipient5,
+    ]
+  );
+  return settings;
+}
+
+// ---------------------------------------------------------------------------
+// Chat widget
+// ---------------------------------------------------------------------------
+
+export async function createConversation(): Promise<ChatConversation> {
+  const pool = await db();
+  const id = randomUUID();
+  const now = new Date().toISOString();
+  await pool.query("INSERT INTO chat_conversations (id, created_at) VALUES ($1,$2)", [id, toDate(now)]);
+  return { id, createdAt: now };
+}
+
+export async function addChatMessage(
+  conversationId: string,
+  role: "user" | "assistant",
+  content: string
+): Promise<ChatMessage> {
+  const pool = await db();
+  const id = randomUUID();
+  const now = new Date().toISOString();
+  await pool.query(
+    "INSERT INTO chat_messages (id, conversation_id, role, content, created_at) VALUES ($1,$2,$3,$4,$5)",
+    [id, conversationId, role, content, toDate(now)]
+  );
+  return { id, conversationId, role, content, createdAt: now };
+}
+
+export async function getConversationMessages(conversationId: string): Promise<ChatMessage[]> {
+  const pool = await db();
+  const { rows } = await pool.query(
+    "SELECT * FROM chat_messages WHERE conversation_id = $1 ORDER BY created_at ASC",
+    [conversationId]
+  );
+  return rows.map((r) => ({
+    id: r.id,
+    conversationId: r.conversation_id,
+    role: r.role,
+    content: r.content,
+    createdAt: r.created_at instanceof Date ? r.created_at.toISOString() : r.created_at,
+  }));
+}
+
+export async function countMessagesInConversation(conversationId: string): Promise<number> {
+  const pool = await db();
+  const { rows } = await pool.query(
+    "SELECT COUNT(*) AS count FROM chat_messages WHERE conversation_id = $1",
+    [conversationId]
+  );
+  return Number(rows[0]?.count ?? 0);
+}
+
+export async function listConversations(): Promise<ChatConversation[]> {
+  const pool = await db();
+  const { rows } = await pool.query("SELECT * FROM chat_conversations ORDER BY created_at DESC LIMIT 100");
+  return rows.map((r) => ({
+    id: r.id,
+    visitorName: r.visitor_name ?? undefined,
+    visitorContact: r.visitor_contact ?? undefined,
+    createdAt: r.created_at instanceof Date ? r.created_at.toISOString() : r.created_at,
+  }));
 }

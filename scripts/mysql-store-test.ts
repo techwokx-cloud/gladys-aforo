@@ -129,6 +129,29 @@ async function main() {
   const pub = await store.getPublishingSettings();
   console.log("getPublishingSettings ->", pub.facebookProvider, pub.bufferFacebookChannelId);
 
+  console.log("--- WhatsApp settings ---");
+  await store.saveWhatsAppSettings({
+    phoneNumberId: "1234567890",
+    accessToken: "test-token",
+    templateName: "website_chat_notification",
+    recipient1: "+233555000001",
+    recipient2: "+233555000002",
+    recipient3: "",
+    recipient4: "",
+    recipient5: "",
+  });
+  const wa = await store.getWhatsAppSettings();
+  console.log("getWhatsAppSettings ->", wa.phoneNumberId, wa.recipient1, wa.recipient2);
+
+  console.log("--- Chat widget ---");
+  const conv = await store.createConversation();
+  await store.addChatMessage(conv.id, "user", "Hello, I need help");
+  await store.addChatMessage(conv.id, "assistant", "Hi! How can I help you today?");
+  const chatMessages = await store.getConversationMessages(conv.id);
+  const msgCount = await store.countMessagesInConversation(conv.id);
+  const conversations = await store.listConversations();
+  console.log("chat messages ->", chatMessages.length, "count fn ->", msgCount, "conversations ->", conversations.length);
+
   console.log("\n✅ ALL TESTS PASSED");
   process.exit(0);
 }
