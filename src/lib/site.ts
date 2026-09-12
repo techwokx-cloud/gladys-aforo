@@ -8,7 +8,7 @@ export const site = {
   contact: {
     address: "66th Patrice Lumumba Street, Airport Residential, Accra",
     phones: ["0555 296 706", "0540 127 253"],
-    email: "philipjosiah252022@gmail.com",
+    email: "help@gladysaforofoundation.org",
     momo: [
       { network: "MTN Mobile Money", number: "0555 296 706" },
       { network: "Vodafone Cash", number: "0540 127 253" },
